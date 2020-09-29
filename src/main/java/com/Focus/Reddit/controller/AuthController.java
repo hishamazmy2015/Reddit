@@ -1,16 +1,14 @@
 package com.Focus.Reddit.controller;
 
+import com.Focus.Reddit.dto.AuthenticationResponse;
 import com.Focus.Reddit.dto.LoginRequest;
 import com.Focus.Reddit.dto.RegisterRequset;
 import com.Focus.Reddit.service.AuthService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.Collections;
 
 @RestController
 @RequestMapping("/api/auth")
@@ -32,11 +30,10 @@ public class AuthController {
         return new ResponseEntity<>("Account Activated Successful ", HttpStatus.OK);
     }
 
-    @GetMapping("/login")
-    public void login(@RequestBody LoginRequest loginRequest) throws UsernameNotFoundException {
-    authService.login(loginRequest);
+    @PostMapping("/login")
+    public AuthenticationResponse login(@RequestBody LoginRequest loginRequest) throws UsernameNotFoundException {
+        return authService.login(loginRequest);
     }
-
 
 
 }
