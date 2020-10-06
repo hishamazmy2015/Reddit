@@ -1,0 +1,18 @@
+package com.Focus.Reddit.dto;
+
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+public class PostRequest {
+    private Long postId;
+    private String SubredditName;
+    private String postName;
+    private String url;
+    private String description;
+
+}
+
