@@ -1,11 +1,9 @@
 package com.Focus.Reddit.controller;
 
-import com.Focus.Reddit.dto.CommentDto;
-import com.Focus.Reddit.dto.PostRequest;
+import com.Focus.Reddit.dto.CommentsDto;
 import com.Focus.Reddit.dto.PostResponse;
 import com.Focus.Reddit.mapper.PostMapper;
 import com.Focus.Reddit.service.CommentService;
-import com.Focus.Reddit.service.PostService;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
@@ -20,35 +18,24 @@ import java.util.List;
 @Slf4j
 public class CommentsController {
 
-    private final CommentService postService;
+    private final CommentService commentService;
     private final PostMapper postMapper;
 
 
     @PostMapping
-    public ResponseEntity<Void> createComment(@RequestBody CommentDto commentDto) {
-        postService.save(commentDto);
+    public ResponseEntity<Void> createComment(@RequestBody CommentsDto commentDto) {
+        commentService.save(commentDto);
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
-    @GetMapping("/id")
-    public PostResponse getPostByID(@PathVariable Long id) {
-        return postService.getPost(id);
+    @GetMapping("/by-post/{postId}")
+    public ResponseEntity<List<CommentsDto>> getAllCommentsForPosts(@PathVariable Long postId) {
+        return ResponseEntity.status(HttpStatus.OK).body(commentService.getAllCommentsForPosts(postId));
     }
 
-
-    @GetMapping("/")
-    public List<PostResponse> getAllPosts() {
-        return postService.getAllPosts();
-    }
-
-    @GetMapping("/by-subreddit/{id}")
-    public List<PostResponse> getAllPostsBySubreddit(Long id) {
-        return postService.getPostsBySubreddit(id);
-    }
-
-    @GetMapping("/by-user/{name}")
-    public List<PostResponse> getPostByUserName(String username) {
-        return postService.getPostByUserName(username);
+    @GetMapping("/by-user/{userName}")
+    public ResponseEntity<List<CommentsDto>> getAllCommentsForUSer(@PathVariable Long postId) {
+        return ResponseEntity.status(HttpStatus.OK).body(commentService.getAllCommentsForUser(postId));
     }
 
 

@@ -17,10 +17,12 @@ import java.util.List;
 @Slf4j
 public class SubredditController {
 
-    private SubredditService subredditService;
+    private final SubredditService subredditService;
 
     @PostMapping
     public ResponseEntity<SubredditDto> createSubreddit(@RequestBody SubredditDto subredditDto) {
+        System.out.println("subredditDto "+subredditDto);
+
         return ResponseEntity.status(HttpStatus.CREATED).
                 body(subredditService.save(subredditDto));
     }

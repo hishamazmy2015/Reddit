@@ -2,6 +2,7 @@ package com.Focus.Reddit.service;
 
 import com.Focus.Reddit.exceptions.SpringRedditException;
 import com.Focus.Reddit.model.NotificationEmail;
+import com.Focus.Reddit.model.User;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.mail.MailException;
@@ -16,7 +17,7 @@ import org.springframework.stereotype.Service;
 @Slf4j
 public class MailService {
     private final JavaMailSender mailSender;
-    private final MailContainBuilder mailContainBuilder;
+    private final MailContentBuilder mailContainBuilder;
 
     @Async
     void sendMail(NotificationEmail notificationEmail) {
@@ -31,11 +32,15 @@ public class MailService {
             mailSender.send(mimeMessagePreparator);
             log.info("Activation email sent! ");
         } catch (MailException e) {
-            throw new SpringRedditException("Expectation occurred when sending the email "+notificationEmail.getRecipient());
+            throw new SpringRedditException("Expectation occurred when sending the email " + notificationEmail.getRecipient());
         }
 
     }
 
 
+
 }
+
+
+
 

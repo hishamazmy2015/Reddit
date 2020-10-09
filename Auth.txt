@@ -1,0 +1,258 @@
+
+hishamazmy2015@gmail.com
+
+
+
+hisham2010363AZMY1994
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+{"seguro":"0",
+"codigo_envio_servicio":"PEDIDOTIENDA123"
+,"contacto_salida":" "
+,"id_agencia":"2"
+,"hora_recogida_desde":"10:30"
+,"valor_mercancia":", ","cod_promo":" "
+,"observaciones_salida":""
+,"codigos_destino":"28026"
+,"codigo_mercancia":"24"
+,"email_salida":"info@emailejemplo.com"
+,"hora_recogida_hasta":"18:00","contenido_envio":","
+,"usuario_servicio":"teresa@only7.es18"
+,"iso_pais_salida":"ES"
+,"importe_seguro":"0"
+,"direccion_salida":"Pol. Ind. San Jer\\u00f3nimo-Parc.15 Nave 12"
+,"dropshipping":"0"
+,"telefono_llegada":"655490481"
+,"array_bultos":[{},{"contenido":"Fashion and accessories"
+,"dni_contenido":""
+,"peso":"10","ancho":"10"
+,"valor":""
+,"largo":"10"
+,"alto":"10"
+,"taric":""}]
+,"password_servicio":"0nwgzucl"
+,"servicio":"api"
+,"contrareembolso":"0"
+,"direccion_llegada":"Calle Mayor, 3, 1C "
+,"nombre_salida":"Nombre salida"
+,"dia_laborable_automatico":"1"
+,"contacto_llegada":" "
+,"poblacion_salida":"MALAGA"
+,"observaciones_llegada":""
+,"select_oficinas_destino":"null"
+,"dni_llegada":"012345679D"
+,"cantidad_reembolso":"0"
+,"email_llegada":"info@emailllegada.es"
+,"telefono_salida":"642139190"
+,"iso_pais_llegada":"ES"
+,"id_usuario":"12345"
+,"codigos_origen":"29679"
+,"unidad_correo":"null"
+,"recoger_tienda":"0"
+,"nombre_llegada":"Luis Pérez Lozano"
+,"poblacion_llegada":""
+,"fecha_recogida":"02\\/04\\/2019"}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+{
+"array_bultos": [
+[], {
+"peso": "10",
+"largo": "10",
+"ancho": "10",
+"alto": "10",
+"contenido": "Fashion and accessories",
+"taric": "",
+"dni_contenido": "",
+"valor": ""
+}
+],
+"valor_mercancia": 0,
+"contenido_envio": ", ",
+"contrareembolso": 0,
+"cantidad_reembolso": 0,
+"seguro": 0,
+"dia_laborable_automatico": 1,
+
+"importe_seguro": 0,
+"dropshipping": 0,
+"codigos_origen": "41015",
+"poblacion_salida": "SEVILLA",
+"iso_pais_salida": "ES",
+"direccion_salida": "Only7 Calle Málaga, 26 29670 Benahavís Málaga",
+"email_salida":  "teresa@only7.es",
+"nombre_salida": "teresa",
+"telefono_salida": "642139190",
+
+
+"codigos_destino": "47012",
+"poblacion_llegada": "Valladolid",
+"iso_pais_llegada": "ES",
+"direccion_llegada": "Calle Mayor, 3, 1C ",
+"telefono_llegada": "655490481",
+
+"email_llegada": "hazmy@activedd.com",
+"nombre_llegada": "Madrid",
+"dni_llegada": "0123456794",
+
+"observaciones_salida": "",
+"contacto_salida": "",
+"observaciones_llegada": "-",
+"contacto_llegada": "",
+"codigo_mercancia": "24",
+"recoger_tienda": "0",
+"cod_promo": "",
+"select_oficinas_destino": null,
+"fecha_recogida": "09\/10\/2020",
+"hora_recogida_desde": "10:30",
+"hora_recogida_hasta": "18:00",
+"unidad_correo": null,
+"codigo_envio_servicio": "PEDIDOTIENDA123",
+"id_agencia": "2",
+"usuario_servicio": "teresa@only7.es18",
+"password_servicio": "0nwgzucl",
+"cn": 280,
+"servicio": "api",
+"id_usuario": "12345"
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+{
+"array_bultos": [
+[], {
+"peso": "10",
+"largo": "10",
+"ancho": "10",
+"alto": "10",
+"contenido": "Fashion and accessories",
+"taric": "",
+"dni_contenido": "",
+"valor": ""
+}
+],
+"valor_mercancia": 0,
+"contenido_envio": ", ",
+"contrareembolso": 0,
+"cantidad_reembolso": 0,
+"seguro": 0,
+"dia_laborable_automatico": 1,
+
+"importe_seguro": 0,
+"dropshipping": 0,
+"codigos_origen": "41015",
+"poblacion_salida": "SEVILLA",
+"iso_pais_salida": "ES",
+"direccion_salida": "Only7 Calle Málaga, 26 29670 Benahavís Málaga",
+"email_salida":  "teresa@only7.es",
+"nombre_salida": "teresa",
+"telefono_salida": "+34 667 677 348",
+
+
+"codigos_destino": "47012",
+"poblacion_llegada": "Valladolid",
+"iso_pais_llegada": "ES",
+"direccion_llegada": "Calle Mayor, 3, 1C ",
+"telefono_llegada": "655490481",
+
+"email_llegada": "hazmy@activedd.com",
+"nombre_llegada": "Madrid",
+"dni_llegada": "0123456794",
+
+"observaciones_salida": "",
+"contacto_salida": "",
+"observaciones_llegada": "-",
+"contacto_llegada": "",
+"codigo_mercancia": "24",
+"recoger_tienda": "0",
+"cod_promo": "",
+"select_oficinas_destino": null,
+"fecha_recogida": "09-10-2020",
+"hora_recogida_desde": "10:30",
+"hora_recogida_hasta": "18:00",
+"unidad_correo": null,
+"codigo_envio_servicio": "PEDIDOTIENDA123",
+"id_agencia": "2",
+"usuario_servicio": "teresa@only7.es18",
+"password_servicio": "0nwgzucl",
+"cn": 280,
+"servicio": "api",
+"id_usuario": "12345"
+}
+
+
+
+
+
+
+
+
+
+

@@ -1,12 +1,17 @@
 package com.Focus.Reddit.dto;
 
-//@Data
-//@AllArgsConstructor
-//@NoArgsConstructor
+import com.Focus.Reddit.model.VoteType;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+
+@AllArgsConstructor
+@NoArgsConstructor
+@Data
 public class VoteDto {
-//    private Long id;
-//    private Long postId;
-//    private Instant createdDate;
-//    private String text;
-//    private String userName;
+
+    private VoteType voteType;
+    private Long postId;
+
 }

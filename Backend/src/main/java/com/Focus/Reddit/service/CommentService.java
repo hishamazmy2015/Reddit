@@ -5,57 +5,61 @@ import com.Focus.Reddit.dto.PostRequest;
 import com.Focus.Reddit.dto.PostResponse;
 import com.Focus.Reddit.exceptions.PostNotFoundException;
 import com.Focus.Reddit.exceptions.SubredditNotFoundException;
+import com.Focus.Reddit.mapper.CommentMapper;
 import com.Focus.Reddit.mapper.PostMapper;
-import com.Focus.Reddit.model.Comment;
-import com.Focus.Reddit.model.Subreddit;
-import com.Focus.Reddit.model.User;
+import com.Focus.Reddit.model.*;
+import com.Focus.Reddit.repository.CommentRepository;
 import com.Focus.Reddit.repository.PostRepository;
 import com.Focus.Reddit.repository.SubredditRepository;
 import com.Focus.Reddit.repository.UserRepository;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 import static java.util.stream.Collectors.toList;
 
 @Service
-@Data
 @AllArgsConstructor
-@NoArgsConstructor
-@Transactional
-
+@Slf4j
+@org.springframework.transaction.annotation.Transactional
 public class CommentService {
 
     private static final String POST_URL = "";
-    private SubredditRepository subredditRepository;
-    private PostRepository postRepository;
-    private UserRepository userRepository;
-    private PostMapper postMapper;
+    private final SubredditRepository subredditRepository;
+    private final PostRepository postRepository;
+    private final UserRepository userRepository;
+    private final PostMapper postMapper;
     private final CommentMapper commentMapper;
+    private final CommentRepository commentRepository;
 
-    private AuthService authService;
-    private MailService mailService;
+    private final AuthService authService;
+    private final MailService mailService;
+
+    private final MailContentBuilder mailContainBuilder;
 
     @Transactional
     public void save(CommentsDto commentsDto) {
-        postRepository.findById(commentsDto.getPostId())
-                .orElseThrow(() -> new PostNotFoundException(commentsDto.getPostId().toString()));
-
-        comm
-
+        Post post = postRepository.findById(commentsDto.getPostId())
+                .orElseThrow(() -> new PostNotFoundException("Not eXist"));
         User currentUser = authService.getCurrentUser();
-        Subreddit subreddit = subredditRepository.findByName(postRequest.getSubredditName()).orElseThrow(() -> new SubredditNotFoundException(
-                postRequest.getSubredditName()));
+        Comment comment = commentMapper.map(commentsDto, post, currentUser);
 
-        postRepository.save(postMapper.map(postRequest, subreddit, currentUser));
+        commentRepository.save(comment);
 
+        String message = mailContainBuilder.build(currentUser + "  post " + POST_URL);
+        sendMailNotification(message, post.getUser());
+    }
 
+    private void sendMailNotification(String message, User user) {
+        mailService.sendMail(new NotificationEmail(user.getUsername(), user.getEmail(), message));
     }
 
     @org.springframework.transaction.annotation.Transactional(readOnly = true)
@@ -64,13 +68,6 @@ public class CommentService {
                 orElseThrow(() -> new PostNotFoundException("the Post not exist")));
     }
 
-
-    @org.springframework.transaction.annotation.Transactional(readOnly = true)
-    public List<PostResponse> getAllPosts() {
-        return postRepository.findAll().stream().
-                map(postMapper::mapPostToDto).
-                collect(toList());
-    }
 
     public List<PostResponse> getPostsBySubreddit(Long subredditid) {
 
@@ -88,4 +85,23 @@ public class CommentService {
 
 
     }
+
+    @org.springframework.transaction.annotation.Transactional(readOnly = true)
+    public List<CommentsDto> getAllCommentsForPosts(Long postId) {
+        Post byId = postRepository.findById(postId).orElseThrow(() -> new PostNotFoundException(postId.toString()));
+        return
+                commentRepository.findByPost(byId).stream().
+                        map(commentMapper::mapToDto).
+                        collect(toList());
+    }
+
+    @org.springframework.transaction.annotation.Transactional(readOnly = true)
+    public List<CommentsDto> getAllCommentsForUser(Long userId) {
+        User byId = userRepository.findById(userId).orElseThrow(() -> new UsernameNotFoundException(userId.toString()));
+        return
+                commentRepository.findAllByUser(byId).stream().
+                        map(commentMapper::mapToDto).
+                        collect(toList());
+    }
+
 }

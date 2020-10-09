@@ -14,6 +14,8 @@ import com.Focus.Reddit.repository.UserRepository;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -25,18 +27,17 @@ import java.util.stream.Collectors;
 import static java.util.stream.Collectors.*;
 
 @Service
-@Data
 @AllArgsConstructor
-@NoArgsConstructor
-@Transactional
+@Slf4j
+@org.springframework.transaction.annotation.Transactional
 public class PostService {
 
-    private SubredditRepository subredditRepository;
-    private UserRepository userRepository;
-    private PostRepository postRepository;
-    private PostMapper postMapper;
-    private AuthService authService;
-    private MailService mailService ;
+    private final SubredditRepository subredditRepository;
+    private final UserRepository userRepository;
+    private final PostRepository postRepository;
+    private final PostMapper postMapper;
+    private final AuthService authService;
+    private final MailService mailService ;
 
     @Transactional
     public void save(PostRequest postRequest) {

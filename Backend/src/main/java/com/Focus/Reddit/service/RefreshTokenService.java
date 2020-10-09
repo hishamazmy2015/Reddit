@@ -1,57 +1,46 @@
 package com.Focus.Reddit.service;
 
-import com.Focus.Reddit.dto.VoteDto;
-import com.Focus.Reddit.exceptions.PostNotFoundException;
 import com.Focus.Reddit.exceptions.SpringRedditException;
-import com.Focus.Reddit.model.Post;
-import com.Focus.Reddit.model.User;
-import com.Focus.Reddit.model.Vote;
+import com.Focus.Reddit.model.RefreshToken;
 import com.Focus.Reddit.repository.PostRepository;
+import com.Focus.Reddit.repository.RefreshTokenRepository;
 import com.Focus.Reddit.repository.VoteRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
-import java.util.Optional;
-
-import static com.Focus.Reddit.model.VoteType.UPVOTE;
+import javax.transaction.Transactional;
+import java.time.Instant;
+import java.util.UUID;
 
 
 @Service
 @AllArgsConstructor
+@Transactional
 public class RefreshTokenService {
 
     private final VoteRepository voteRepository;
     private final PostRepository postRepository;
-    private final AuthService authService;
+    private final RefreshTokenRepository refreshTokenRepository;
 
 
-    public void save(VoteDto voteDto) {
-        Post post = postRepository.findById(voteDto.getPostId()).orElseThrow(() -> new PostNotFoundException("Post Not Found with ID :  "+voteDto.getPostId()));
-        User currentUser = authService.getCurrentUser();
-        Optional<Vote> voteByPostAndUser = voteRepository.findTopByPostAndUserOrderByVoteIdDesc(post,currentUser );
-
-        if (voteByPostAndUser.isPresent() &&
-                voteByPostAndUser.get().getVoteType().equals(voteDto.getVoteType())) {
-            throw new SpringRedditException("You have already " +
-                    voteDto.getVoteType() + "'d for this Post");
-        }
-        if (UPVOTE.equals(voteDto.getVoteType()) )
-            post.setVoteCount(post.getVoteCount()+1);
-        else
-            post.setVoteCount(post.getVoteCount()-1);
-
-        voteRepository.save(mapToVote(voteDto,post));
-        postRepository.save(post);
+    public RefreshToken generateRefreshToken() {
+        RefreshToken refreshToken = new RefreshToken();
+        refreshToken.setToken(UUID.randomUUID().toString());
+        refreshToken.setCreatedDate(Instant.now());
+        return refreshTokenRepository.save(refreshToken);
+    }
 
 
+    void validateRefreshToken(String token) {
+        refreshTokenRepository.findByToken(token)
+                .orElseThrow(() -> new SpringRedditException("Invalid refresh Token"));
 
     }
 
-    private Vote mapToVote(VoteDto voteDto, Post post) {
-        return Vote.builder()
-                .voteType(voteDto.getVoteType())
-                .post(post)
-                .user(authService.getCurrentUser())
-                .build();
+    public void deleteRefreshToken(String token) {
+        refreshTokenRepository.deleteByToken(token);
+
     }
+
+
 }

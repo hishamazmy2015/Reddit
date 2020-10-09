@@ -24,7 +24,7 @@ public class securityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     private final UserDetailsService userDetailsService;
     @Autowired
-    private JwtAuthenticationFilter jwtAuthenticationFilter;
+    private final JwtAuthenticationFilter jwtAuthenticationFilter;
 
 
     @Bean(BeanIds.AUTHENTICATION_MANAGER)

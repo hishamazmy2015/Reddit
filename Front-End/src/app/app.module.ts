@@ -9,6 +9,12 @@ import { RouterModule, Routes } from '@angular/router';
 import { ReactiveFormsModule } from '@angular/forms';
 import {  HttpClientModule } from '@angular/common/http';
 import { LoginComponent } from './auth/login/login.component';
+import { NgxWebstorageModule } from 'ngx-webstorage';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ToastrModule } from 'ngx-toastr';
+
+
+
 
 const appRoutes: Routes = [
   { path: 'sign-up', component: SignupComponent },
@@ -27,7 +33,10 @@ const appRoutes: Routes = [
     RouterModule.forRoot(appRoutes),
     AppRoutingModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    NgxWebstorageModule.forRoot(),
+    BrowserAnimationsModule,
+    ToastrModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]
