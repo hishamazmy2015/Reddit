@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { PostModel } from '../shared/Post.model';
 import { PostService } from '../shared/post.service';
-// import { PostService } from '@fortawesome/free shared/post.service';
+import { faComments,faArrowUp } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-home',
@@ -10,8 +10,10 @@ import { PostService } from '../shared/post.service';
 })
 export class HomeComponent implements OnInit {
 
-  faArrowUP=faArrowUp
-  faComment
+
+  // faComment:faArrowUp;
+  // faComment:faComments;
+  
   posts: Array<PostModel> = [];
 
   constructor(private postSer: PostService) {
