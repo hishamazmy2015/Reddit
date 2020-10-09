@@ -1,15 +1,14 @@
-import { HttpErrorResponse, HttpEvent, HttpHandler, HttpInterceptor, HttpRequest, HttpSentEvent } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable, throwError } from 'rxjs';
-import { catchError, switchMap } from 'rxjs/operators';
-import { LoginResponse } from './auth/login/loginResponse.payload';
+import { HttpInterceptor, HttpRequest, HttpHandler, HttpEvent, HttpErrorResponse } from '@angular/common/http';
+import { Observable, BehaviorSubject, throwError } from 'rxjs';
 import { AuthService } from './auth/shared/auth.service';
+import { catchError, switchMap, take, filter } from 'rxjs/operators';
+import { LoginResponse } from './auth/login/loginResponse.payload';
 
 @Injectable({
     providedIn: 'root'
 })
-
-export class implements HttpInterceptor {
+export class TokenInterceptor implements HttpInterceptor {
 
     isTokenRefreshing = false;
     refreshTokenSubject: BehaviorSubject<any> = new BehaviorSubject(null);
