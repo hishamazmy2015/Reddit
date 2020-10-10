@@ -1,15 +1,16 @@
-
-
 export class PostModel {
     id: number;
     postName: String;
     url: String;
     description: String;
     voteCount: number;
-    username: String;
-    SubredditName: String;
+    userName: String;
+    subredditName: String;
     commentCount: number;
     duration: String;
+
+    upVote: boolean;
+    downVote: boolean;
 
 
 }

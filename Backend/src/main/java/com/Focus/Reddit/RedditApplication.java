@@ -7,9 +7,10 @@ import org.springframework.context.annotation.Import;
 import org.springframework.scheduling.annotation.EnableAsync;
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
+
 @SpringBootApplication
-@Import(SwaggerConfiguration.class)
 @EnableAsync
+@Import(SwaggerConfiguration.class)
 public class RedditApplication {
 
 	public static void main(String[] args) {

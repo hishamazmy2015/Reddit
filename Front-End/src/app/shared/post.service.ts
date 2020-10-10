@@ -14,7 +14,7 @@ export class PostService {
 
 
   getAllPosts(): Observable<Array<PostModel>> {
-    return this.httpClient.get<Array<PostModel>>('http://localhost:8080/api/posts');
-  }
+    return this.httpClient.get<Array<PostModel>>('http://localhost:8080/api/posts/');
+  } 
 
 }

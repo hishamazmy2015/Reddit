@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
+import { throwError } from 'rxjs';
 import { AuthService } from '../shared/auth.service';
 import { LoginRequestPayload } from './loginRequest.payload';
 
@@ -17,8 +18,10 @@ export class LoginComponent implements OnInit {
   registerSuccessMessage: string;
   isError: boolean;
 
-  constructor(private authSer: AuthService, private activatedRouter: ActivatedRoute,
-    private tost: ToastrService, private router: Router) {
+  constructor(private authSer: AuthService,
+    private activatedRouter: ActivatedRoute,
+    private tost: ToastrService,
+    private router: Router) {
     this.loginReq = {
       username: '',
       password: '',
@@ -35,11 +38,8 @@ export class LoginComponent implements OnInit {
         this.tost.success('Signup Successful');
         this.registerSuccessMessage = 'Please Check your inbox for activation then' +
           'activate your account before you login! ';
-
       }
     });
-
-
   }
 
   login() {
@@ -47,17 +47,21 @@ export class LoginComponent implements OnInit {
     this.loginReq.password = this.loginForm.get('password').value;
     this.authSer.login(this.loginReq).subscribe(
       date => {
-        console.log('Login successful');
         if (date) {
+          console.log('Login successful');
           this.isError = false;
-          this.router.navigateByUrl('/');
+          this.router.navigateByUrl('');
           this.tost.success('Login Successful');
-
-        } else {
-          this.isError = true;
+          // } else {
+          // this.isError = true;
+          // }
         }
-      }
-    );
+      }, error => {
+        console.log("Error log");
+        
+        this.isError = true;
+        throwError(error);
+      });
   }
 
 

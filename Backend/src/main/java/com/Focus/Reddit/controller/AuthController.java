@@ -42,7 +42,8 @@ public class AuthController {
     }
 
     @PostMapping("/refresh/token")
-    public AuthenticationResponse refreshToken(@Valid @RequestBody RefreshTokenRequest refreshTokenRequest) throws UsernameNotFoundException {
+    public AuthenticationResponse refreshToken(
+            @Valid @RequestBody RefreshTokenRequest refreshTokenRequest) throws UsernameNotFoundException {
         return authService.refreshToken(refreshTokenRequest);
     }
 

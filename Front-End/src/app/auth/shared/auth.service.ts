@@ -18,34 +18,14 @@ export class AuthService {
     private localStorage: LocalStorageService) {
   }
 
-
-  refreshToken() {
-    const refreshTokenPayload = {
-      refreshToken: this.getRefreshToken(),
-      username: this.getUserName()
-    }
-    return this.httpClient.post<LoginResponse>('http://localhost:8080/api/auth//refresh/token',
-      refreshTokenPayload).pipe(
-        tap(response => {
-          this.localStorage.store('authenticationToken', response.authenticationToken);
-          this.localStorage.store('expiresAt', response.expiresAt);
-        })
-      );
+  refreshTokenPayload = {
+    refreshToken: this.getRefreshToken(),
+    username: this.getUserName()
   }
-  
-  getRefreshToken() {
-    return this.localStorage.retrieve('refreshToken');
-  }
-
-  getUserName() {
-    return this.localStorage.retrieve('username');
-  }
-
 
   signup(signupReq: SignupRequestPayload): Observable<any> {
     return this.httpClient.post('http://localhost:8080/api/auth/signup', signupReq, { responseType: 'text' });
   }
-
 
 
   login(loginReq: LoginRequestPayload): Observable<any> {
@@ -55,6 +35,8 @@ export class AuthService {
         this.localStorage.store('username', data.username);
         this.localStorage.store('refreshToken', data.refreshToken);
         this.localStorage.store('expiresAt', data.expiresAt);
+        console.log('authenticationToken', data.authenticationToken);
+        
 
         return true;
       })
@@ -63,6 +45,31 @@ export class AuthService {
 
   getJwtToken() {
     return this.localStorage.retrieve('authenticationToken');
+  }
+
+  getRefreshToken() {
+    return this.localStorage.retrieve('refreshToken');
+  }
+
+  getUserName() {
+    return this.localStorage.retrieve('username');
+  }
+  refreshToken() {
+    const refreshTokenPayload = {
+      refreshToken: this.getRefreshToken(),
+      username: this.getUserName()
+    }
+    return this.httpClient.post<LoginResponse>('http://localhost:8080/api/auth/refresh/token',
+      this.refreshTokenPayload)
+      .pipe(
+        tap(response => {
+          this.localStorage.clear('authenticationToken');
+          this.localStorage.clear('expiresAt');
+          this.localStorage.store('authenticationToken', response.authenticationToken);
+          this.localStorage.store('expiresAt', response.expiresAt);
+
+        })
+      );
   }
 
 
