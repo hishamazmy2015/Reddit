@@ -19,6 +19,9 @@ import { VoteButtonComponent } from './shared/vote-button/vote-button.component'
 import { SideBarComponent } from './shared/side-bar/side-bar.component';
 import { SubredditSideBarComponent } from './shared/subreddit-side-bar/subreddit-side-bar.component';
 import { TokenInterceptor } from './token-intercept';
+import { CreateSubredditComponent } from './subreddit/create-subreddit/create-subreddit.component';
+import { CreatePostComponent } from './post/create-post/create-post.component';
+import { ListSubredditsComponent } from './subreddit/list-subreddits/list-subreddits.component';
 
 
 
@@ -38,7 +41,10 @@ import { TokenInterceptor } from './token-intercept';
     PostTileComponent,
     VoteButtonComponent,
     SideBarComponent,
-    SubredditSideBarComponent
+    SubredditSideBarComponent,
+    CreateSubredditComponent,
+    CreatePostComponent,
+    ListSubredditsComponent
   ],
   imports: [
     BrowserModule,
