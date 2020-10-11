@@ -26,8 +26,8 @@ public class SubredditController {
         return ResponseEntity.status(HttpStatus.CREATED).
                 body(subredditService.save(subredditDto));
     }
-
-    @GetMapping
+ 
+    @GetMapping("/")
     public ResponseEntity<List<SubredditDto>> getAllSubreddits() {
         return ResponseEntity
                 .status(HttpStatus.OK)

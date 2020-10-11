@@ -37,11 +37,20 @@ public class PostService {
     private final PostRepository postRepository;
     private final PostMapper postMapper;
     private final AuthService authService;
-    private final MailService mailService ;
+    private final MailService mailService;
 
     @Transactional
     public void save(PostRequest postRequest) {
+
         User currentUser = authService.getCurrentUser();
+        System.out.println("Desc is ");
+        System.out.println("Desc is ");
+        System.out.println("Desc is ");
+        System.out.println("Desc is ");
+        System.out.println("Desc is ");
+        System.out.println(postRequest.getSubredditName());
+        System.out.println("End of Desc is is         System.out.println ");
+
         Subreddit subreddit = subredditRepository.findByName(postRequest.getSubredditName()).orElseThrow(() -> new SubredditNotFoundException(
                 postRequest.getSubredditName()));
 

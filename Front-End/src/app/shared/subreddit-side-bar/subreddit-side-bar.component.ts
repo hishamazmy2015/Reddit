@@ -13,12 +13,13 @@ export class SubredditSideBarComponent implements OnInit {
 
   constructor(private subredditSer: SubredditService) {
      this.subredditSer.getAllSubreddit().subscribe(subreddit => {
-    if (this.subreddits.length >= 4) {
-      this.subreddits = subreddit.splice(0, 3);
+    if (this.subreddits.length > 3) {
+      this.subreddits = subreddit.splice(0, 2);
       this.displayViewAll = true;
 ``
-    } else
+    } else{
       this.subreddits = subreddit;
+    }
   })}
 
 

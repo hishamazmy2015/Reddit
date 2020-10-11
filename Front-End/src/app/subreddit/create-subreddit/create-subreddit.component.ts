@@ -31,6 +31,10 @@ export class CreateSubredditComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  discard(){
+    this.router.navigateByUrl('/');
+  }
+
   createSubreddit() {
     this.subredditModel.name = this.createSubredditForm.get('title').value;
     this.subredditModel.description = this.createSubredditForm.get('description').value;
