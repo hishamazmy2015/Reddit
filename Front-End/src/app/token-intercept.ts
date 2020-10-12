@@ -34,7 +34,6 @@ export class TokenInterceptor implements HttpInterceptor {
             }));
         }
         return next.handle(req);
-
     }
 
     private handleAuthErrors(req: HttpRequest<any>, next: HttpHandler)

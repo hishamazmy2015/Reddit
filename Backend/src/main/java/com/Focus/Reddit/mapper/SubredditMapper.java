@@ -22,7 +22,8 @@ public interface SubredditMapper {
     }
 
     @InheritInverseConfiguration
-    @Mapping(target = "posts" ,ignore = true)
+    @Mapping(target = "posts", ignore = true)
+    @Mapping(target = "createdDate", expression = "java(java.time.Instant.now())")
     Subreddit mapDtoToSubreddit(SubredditDto subredditDto);
 
 }

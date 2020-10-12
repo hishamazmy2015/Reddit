@@ -12,15 +12,15 @@ import { Router } from '@angular/router';
 })
 export class PostTileComponent implements OnInit {
 
-//  @Input() posts: Array<PostModel>;
- @Input() posts: PostModel[]; 
-
+  //  @Input() posts: Array<PostModel>;
   faComments = faComments;
+  @Input() posts: PostModel[];
+
 
 
   constructor(private postSer: PostService, private router: Router) {
     postSer.getAllPosts().subscribe(post => {
-      this.posts =post;
+      this.posts = post;
     });
 
   }

@@ -24,4 +24,8 @@ export class PostService {
     return this.httpClient.post('http://localhost:8080/api/posts', post);
   }
 
+
+  getPost(postId: number): Observable<PostModel> {
+    return this.httpClient.get<PostModel>('http://localhost:8080/api/posts/'+postId);
+  }
 }

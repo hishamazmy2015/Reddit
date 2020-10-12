@@ -38,6 +38,8 @@ public class SubredditController {
     public ResponseEntity<SubredditDto> createSubreddit(@PathVariable Long id) {
         return ResponseEntity.status(HttpStatus.CREATED).
                 body(subredditService.getSubredit(id));
+
+
     }
 
 

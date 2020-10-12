@@ -14,6 +14,8 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+import static org.springframework.http.ResponseEntity.status;
+
 @RestController
 //@CrossOrigin(origins = "http://localhost:4200")
 @RequestMapping("/api/posts")
@@ -31,9 +33,12 @@ public class PostController {
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
-    @GetMapping("/id")
-    public PostResponse getPostByID(@PathVariable Long id) {
-        return postService.getPost(id);
+    @GetMapping("/{id}")
+    public ResponseEntity<PostResponse> getPostByID(@PathVariable Long id) {
+        return
+                status(HttpStatus.OK)
+                        .body(postService.getPost(id));
+
     }
 
 
