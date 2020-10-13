@@ -11,15 +11,15 @@ export class CommentService {
   constructor(private httpClient: HttpClient) { }
 
   getCommentsByPostId(postId: number): Observable<CommentPayload[]> {
-    return this.httpClient.get<CommentPayload[]>('/api/comments/by-post/' + postId);
+    return this.httpClient.get<CommentPayload[]>('http://localhost:8080/api/comments/by-post/' + postId);
   }
 
   getCommentsByUserName(UserName: string): Observable<CommentPayload[]> {
-    return this.httpClient.get<CommentPayload[]>('/api/comments/by-post/' + UserName);
+    return this.httpClient.get<CommentPayload[]>('http://localhost:8080/api/comments/by-user/' + UserName);
   }
 
   addComment(commentPayload: CommentPayload): Observable<any> {
-    return this.httpClient.post('/api/comments/by-post/', commentPayload);
+    return this.httpClient.post('http://localhost:8080/api/comments', commentPayload);
   }
 
 
