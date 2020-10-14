@@ -15,6 +15,7 @@ import static javax.persistence.GenerationType.IDENTITY;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
+@Table(name="`Comment`")
 public class Comment {
     @Id
     @GeneratedValue(strategy = IDENTITY)

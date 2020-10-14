@@ -1,0 +1,258 @@
+-- MySQL dump 10.13  Distrib 8.0.21, for Linux (x86_64)
+--
+-- Host: localhost    Database: spring-reddit-clone
+-- ------------------------------------------------------
+-- Server version	8.0.21-0ubuntu0.20.04.4
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!50503 SET NAMES utf8mb4 */;
+/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
+/*!40103 SET TIME_ZONE= +00:00  */;
+/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE= NO_AUTO_VALUE_ON_ZERO  */;
+/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+
+--
+-- Table structure for table   comment  
+--
+
+DROP TABLE IF EXISTS   comment  ;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE   comment   (
+    id   bigint NOT NULL AUTO_INCREMENT,
+    created_date   datetime(6) DEFAULT NULL,
+    text   varchar(255) DEFAULT NULL,
+    post_id   bigint DEFAULT NULL,
+    user_id   bigint DEFAULT NULL,
+  PRIMARY KEY (  id  ),
+  KEY   FKs1slvnkuemjsq2kj4h3vhx7i1   (  post_id  ),
+  KEY   FK8kcum44fvpupyw6f5baccx25c   (  user_id  ),
+  CONSTRAINT   FK8kcum44fvpupyw6f5baccx25c   FOREIGN KEY (  user_id  ) REFERENCES   user   (  user_id  ),
+  CONSTRAINT   FKs1slvnkuemjsq2kj4h3vhx7i1   FOREIGN KEY (  post_id  ) REFERENCES   post   (  post_id  )
+) ENGINE=InnoDB AUTO_INCREMENT=33 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table   comment  
+--
+
+LOCK TABLES   comment   WRITE;
+/*!40000 ALTER TABLE   comment   DISABLE KEYS */;
+INSERT INTO   comment   VALUES (1, 2020-10-08 13:34:48.073341 , First ,1,12),(2, 2020-10-08 13:35:06.030800 , Second ,2,12),(3, 2020-10-08 13:35:17.501568 , Third ,3,12),(4, 2020-10-08 13:35:24.300643 , Fourth ,3,12),(5, 2020-10-08 13:35:30.357787 , Fourth ,4,12),(6, 2020-10-08 13:35:36.414613 , Fourth ,4,12),(7, 2020-10-08 13:35:42.836827 , Fourth ,4,12),(17, 2020-10-09 05:54:40.823357 , Five ,2,12),(18, 2020-10-09 05:55:46.651271 , Five ,2,12),(19, 2020-10-09 05:56:12.404343 , Five ,2,12),(27, 2020-10-09 07:49:11.542757 , Five ,2,12),(28, 2020-10-12 15:04:46.490130 , This is the second 2 ,5,25),(29, 2020-10-12 15:07:56.029414 , fffffff ,2,25),(30, 2020-10-12 15:08:22.612571 , ffffffff ,2,25),(31, 2020-10-12 15:08:35.177659 , lenovo ,2,25),(32, 2020-10-12 15:08:59.259891 , tamam ya zemili ,2,25);
+/*!40000 ALTER TABLE   comment   ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table   post  
+--
+
+DROP TABLE IF EXISTS   post  ;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE   post   (
+    post_id   bigint NOT NULL AUTO_INCREMENT,
+    created_date   datetime(6) DEFAULT NULL,
+    description   longtext,
+    post_name   varchar(255) DEFAULT NULL,
+    url   varchar(255) DEFAULT NULL,
+    vote_count   int DEFAULT NULL,
+    id   bigint DEFAULT NULL,
+    user_id   bigint DEFAULT NULL,
+  PRIMARY KEY (  post_id  ),
+  KEY   FK7dhm40vytolqggids4vc9ykvt   (  id  ),
+  KEY   FK72mt33dhhs48hf9gcqrq4fxte   (  user_id  ),
+  CONSTRAINT   FK72mt33dhhs48hf9gcqrq4fxte   FOREIGN KEY (  user_id  ) REFERENCES   user   (  user_id  ),
+  CONSTRAINT   FK7dhm40vytolqggids4vc9ykvt   FOREIGN KEY (  id  ) REFERENCES   subreddit   (  id  )
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table   post  
+--
+
+LOCK TABLES   post   WRITE;
+/*!40000 ALTER TABLE   post   DISABLE KEYS */;
+INSERT INTO   post   VALUES (1, 2020-10-08 13:33:30.845149 , user , First Post by Spring booter , www.google.com ,-1,4,19),(2, 2020-10-08 13:33:52.047813 , user , First Post by Spring booter  2  , www.google.com ,-2,4,19),(3, 2020-10-08 13:33:57.751066 , user , First Post by Spring booter  3  , www.google.com ,-1,4,19),(4, 2020-10-08 13:34:02.429127 , user , First Post by Spring booter  5  , www.google.com ,0,4,19),(5, 2020-10-08 13:34:05.852566 , user , First Post by Spring booter  4  , www.google.com ,0,4,19),(6, 2020-10-09 04:27:18.165559 , user , First Post by Spring booter  4  , www.google.com ,0,4,19),(7, 2020-10-09 05:41:27.980645 , user , First Post by Spring booter  4  , www.google.com ,0,7,19),(8, 2020-10-09 09:04:51.679019 , user , First Post by Spring booter  4  , www.google.com ,0,7,19),(9, 2020-10-09 09:05:25.685720 , user , First Post by Spring booter  4  , www.google.com ,0,7,19),(10, 2020-10-11 06:37:33.221591 , <p>wwwwwwwwwwwwwwww</p> , dddddd , dddddddddddd ,0,7,25),(11, 2020-10-11 07:17:48.792267 , <h2 style=\"text-align: center;\"><strong>Hellow from the other side</strong></h2>\n<p>&nbsp;</p>\n<p><strong>Auth is Adele</strong></p>\n<p>&nbsp;</p>\n<p><strong>New user is created after this component</strong></p> , From Front End , www.google.com ,0,7,25),(12, 2020-10-12 07:47:53.610972 , <p>Check subreddit</p>\n<p>Check subreddit</p> , Check subreddit , Check subreddit.com ,0,7,25),(13, 2020-10-12 10:32:35.472633 , <p>subredditName</p> , subredditName , subredditName.com ,0,11,25);
+/*!40000 ALTER TABLE   post   ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table   refresh_token  
+--
+
+DROP TABLE IF EXISTS   refresh_token  ;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE   refresh_token   (
+    id   bigint NOT NULL AUTO_INCREMENT,
+    created_date   datetime(6) DEFAULT NULL,
+    token   varchar(255) DEFAULT NULL,
+  PRIMARY KEY (  id  )
+) ENGINE=InnoDB AUTO_INCREMENT=50 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table   refresh_token  
+--
+
+LOCK TABLES   refresh_token   WRITE;
+/*!40000 ALTER TABLE   refresh_token   DISABLE KEYS */;
+INSERT INTO   refresh_token   VALUES (1, 2020-10-08 11:00:00.856876 , 906cfd71-8f4b-436d-944f-bc90d412af9e ),(2, 2020-10-08 11:11:19.607363 , c5848886-b303-435b-b0e1-45de6c035433 ),(3, 2020-10-08 12:06:55.488999 , 84e257a9-21d9-4535-a101-54108d61fe72 ),(4, 2020-10-08 12:16:09.134297 , 3716a022-d05c-4244-9083-e824f9be8b75 ),(5, 2020-10-08 13:03:41.879847 , f970a242-35c7-4e15-bc62-1dc4d059ce89 ),(6, 2020-10-08 13:18:54.873234 , 6eace904-709f-42a7-a56a-75bce57edd56 ),(7, 2020-10-09 10:56:06.892634 , 0c113eba-2804-4a44-985f-7c1b66632e37 ),(8, 2020-10-09 12:47:12.453254 , 7ddbc4e4-30a0-4380-884a-f1ae9302f347 ),(9, 2020-10-09 16:33:11.791114 , f71d8e32-dbc8-41d6-befc-e48c1d7cecfb ),(10, 2020-10-09 16:33:26.140919 , 8a750f20-a038-4e05-b1d0-9df8a3cf612d ),(11, 2020-10-10 06:31:50.633711 , a961f2f7-9c4b-499a-aa89-321b2dc5ddda ),(12, 2020-10-10 06:37:15.762616 , b0db99b3-c1a2-40d4-9b0c-c8fc2e85663f ),(13, 2020-10-10 06:39:43.726458 , 8cf67851-32ef-4cfe-8879-470d72f3a965 ),(14, 2020-10-10 06:40:03.532577 , 0d8cecf4-ff50-4b20-be24-aa07c79df7e1 ),(15, 2020-10-10 06:42:13.688435 , dee67fb9-a868-4938-a6a5-273cbf1f35eb ),(16, 2020-10-10 06:44:15.451180 , a0e57053-4c8f-4bbf-afc9-62741b057df1 ),(17, 2020-10-10 07:40:07.615258 , 45ea3798-de0d-4239-989d-a77468072269 ),(18, 2020-10-10 07:53:53.301785 , 7b9a6797-63ef-4b7d-8368-d65f556c6c45 ),(19, 2020-10-10 08:15:19.708748 , 4cea3771-0696-4a53-bdfc-517892163fc5 ),(20, 2020-10-10 08:20:07.702659 , abe0bd8a-123d-4a74-b672-4d232cbfc533 ),(21, 2020-10-10 08:58:41.998858 , 287a2178-ec50-4e79-847a-ad6bf8d85c7b ),(22, 2020-10-10 09:00:17.891824 , 16a55868-b659-47f4-8dd8-f0f1f0214a8d ),(23, 2020-10-10 09:04:10.571924 , 66ea80f7-b52e-47a8-bad7-bb8407217e83 ),(24, 2020-10-10 09:07:18.775101 , cef84931-5ac0-4ec3-8132-fecad91cf125 ),(25, 2020-10-10 09:10:42.380410 , 4b8a4eb2-5214-4cb5-a0cb-8af66cc68be5 ),(26, 2020-10-10 09:12:06.381147 , 1a6c5f3f-ef26-48bd-9789-eb2db6e55e0d ),(27, 2020-10-10 09:21:17.111389 , d0f5ceec-ae59-4961-bf42-66c99b400e4a ),(28, 2020-10-10 09:22:37.021386 , 68db5fcc-4654-4461-a9bf-e232e33019ae ),(29, 2020-10-10 09:24:58.668002 , 1931539f-5831-4c99-ae2f-e3f8ed808084 ),(30, 2020-10-10 09:53:54.130891 , 771675b8-5379-4bbe-ac00-3a93fb21c6c8 ),(31, 2020-10-10 09:54:28.313706 , 96cb3c01-1188-41a3-9b3e-ad6bc96244cb ),(32, 2020-10-10 10:45:56.668641 , d72003e9-015b-47eb-8013-cf64e4343376 ),(33, 2020-10-10 11:24:10.909506 , 48dc98da-3d55-4ec5-bb2d-e82e86a0a58e ),(34, 2020-10-12 07:03:00.428561 , 005b1eae-da60-4788-af57-8ce3a5848485 ),(35, 2020-10-12 07:37:38.901123 , e2ec06c3-33e5-4ab0-95f8-4d6ef805868b ),(36, 2020-10-12 09:09:51.198450 , 54fd9413-75a1-48a1-97fc-bfd40df4edfd ),(37, 2020-10-12 10:45:01.749468 , ef4098c3-eaaf-4139-8fd1-b4a2ced5aa34 ),(38, 2020-10-12 10:53:29.037620 , d081ba6a-f053-4550-ae4b-d020bb038c0f ),(39, 2020-10-12 10:55:58.302231 , 7f25d141-7bf0-480d-bb96-c354569ce9db ),(40, 2020-10-12 14:35:08.801426 , e442b376-7c6b-42d5-b080-48c4a77b8ecf ),(41, 2020-10-12 14:47:44.178968 , f55ad19c-f9bf-4012-bf02-14e8fc895548 ),(42, 2020-10-12 15:04:28.883889 , 9e7c6186-83d7-47d2-a73f-e1a3283230fc ),(43, 2020-10-12 15:08:11.566667 , 68b69f21-7238-4ab2-b2f4-228f0bb9975f ),(44, 2020-10-12 17:49:57.420027 , 707ea25b-55f5-420f-a474-485bf8e2af95 ),(45, 2020-10-12 17:51:16.486194 , a10fab8e-73d7-4a9d-8c42-7e0feb8b03bf ),(46, 2020-10-12 17:53:23.871753 , 0acca471-4a8d-485c-a28a-293a3de08cf1 ),(47, 2020-10-12 17:54:37.181446 , a6b16534-5fc9-43d0-901e-4bb39359ae1c ),(48, 2020-10-13 04:53:41.884230 , d05b5ea0-fe33-4160-b1e7-354fe631fcf4 ),(49, 2020-10-13 04:55:48.075100 , d377aa0e-dcbc-45e8-b5e9-bc6788e1ae0a );
+/*!40000 ALTER TABLE   refresh_token   ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table   subreddit  
+--
+
+DROP TABLE IF EXISTS   subreddit  ;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE   subreddit   (
+    id   bigint NOT NULL AUTO_INCREMENT,
+    created_date   datetime(6) DEFAULT NULL,
+    description   varchar(255) DEFAULT NULL,
+    name   varchar(255) DEFAULT NULL,
+    user_user_id   bigint DEFAULT NULL,
+  PRIMARY KEY (  id  ),
+  KEY   FKqye4s0ll7xwj74d7irovyhbvg   (  user_user_id  ),
+  CONSTRAINT   FKqye4s0ll7xwj74d7irovyhbvg   FOREIGN KEY (  user_user_id  ) REFERENCES   user   (  user_id  )
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table   subreddit  
+--
+
+LOCK TABLES   subreddit   WRITE;
+/*!40000 ALTER TABLE   subreddit   DISABLE KEYS */;
+INSERT INTO   subreddit   VALUES (1,NULL, This is the first , TestUserH ,NULL),(2,NULL, This is the first , TestUserH ,NULL),(3,NULL, This is the first , TestUserH ,NULL),(4,NULL, This is the second , hisham ,NULL),(5,NULL, This is the second 2 , hisham ,NULL),(6,NULL, This is the second 2 , hisham ,NULL),(7,NULL, This is the second 2 , hisham 2 ,NULL),(8,NULL, Youtube ya basha  desc , Youtube ya basha  ,NULL),(9,NULL, List of posts are comming  , New One is here  ,NULL),(10,NULL, Date is important , New One with Date ,NULL),(11, 2020-10-12 08:42:16.476448 , New One Also For Date Date , New One Also For Date ,NULL);
+/*!40000 ALTER TABLE   subreddit   ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table   subreddit_posts  
+--
+
+DROP TABLE IF EXISTS   subreddit_posts  ;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE   subreddit_posts   (
+    subreddit_id   bigint NOT NULL,
+    posts_post_id   bigint NOT NULL,
+  UNIQUE KEY   UK_ih17w4fa2em7w3u1tt8gqv2wh   (  posts_post_id  ),
+  KEY   FK1plpyiqs72shw84g90q0fes5r   (  subreddit_id  ),
+  CONSTRAINT   FK1plpyiqs72shw84g90q0fes5r   FOREIGN KEY (  subreddit_id  ) REFERENCES   subreddit   (  id  ),
+  CONSTRAINT   FKl27wc8sin3rt45ayge7fanx10   FOREIGN KEY (  posts_post_id  ) REFERENCES   post   (  post_id  )
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table   subreddit_posts  
+--
+
+LOCK TABLES   subreddit_posts   WRITE;
+/*!40000 ALTER TABLE   subreddit_posts   DISABLE KEYS */;
+/*!40000 ALTER TABLE   subreddit_posts   ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table   token  
+--
+
+DROP TABLE IF EXISTS   token  ;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE   token   (
+    id   bigint NOT NULL AUTO_INCREMENT,
+    expiry_date   datetime(6) DEFAULT NULL,
+    token   varchar(255) DEFAULT NULL,
+    user_user_id   bigint DEFAULT NULL,
+  PRIMARY KEY (  id  ),
+  KEY   FK79keudebybjlldk2o4i0nwqev   (  user_user_id  ),
+  CONSTRAINT   FK79keudebybjlldk2o4i0nwqev   FOREIGN KEY (  user_user_id  ) REFERENCES   user   (  user_id  )
+) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table   token  
+--
+
+LOCK TABLES   token   WRITE;
+/*!40000 ALTER TABLE   token   DISABLE KEYS */;
+INSERT INTO   token   VALUES (1,NULL, b0dbf58f-9758-4aab-8167-56e41684e92e ,1),(2,NULL, 48461341-e023-4b36-a51e-a0336312e538 ,2),(3,NULL, 086924ed-8b96-48c8-8202-03628665c4f4 ,3),(4,NULL, 802c888a-e7de-42fa-a1d6-57ed121c2af5 ,4),(5,NULL, 761a35b6-8fbe-4822-8628-ce0a64f1314f ,5),(9,NULL, 72d7f4cf-857d-4e3d-a8b8-cd2abde2bf8b ,9),(10,NULL, e08dbbe4-5162-4780-9b3a-aafc17f945e2 ,10),(11,NULL, 6a59077e-e86c-4106-8b43-1554130e842c ,11),(12,NULL, bd8dacc3-eef5-4b4e-a9dc-6e1aa883c445 ,12),(13,NULL, 9a6d4762-536c-4419-9cf2-bc1b686099ad ,13),(14,NULL, 0cbbee02-8b7f-401f-8008-8bf14c54a15b ,14),(15,NULL, 7add7867-c76d-461d-bc17-9087f6166a22 ,15),(16,NULL, 75cb09d2-dccc-4b4d-9c34-ca1dd0080d2a ,16),(17,NULL, 64ee7438-fc85-4ba6-9359-91e68cfde302 ,17),(18,NULL, efeede10-5425-43e4-9d42-0232bc51772b ,18),(19,NULL, dbdb0235-6aab-4baf-9371-b91068873a48 ,19),(20,NULL, e5ad415e-8148-4411-a5d5-a91fffc9e5e8 ,20),(21,NULL, b16db510-f7d0-4c78-8395-8f820ccafe97 ,21),(22,NULL, e982aed9-4427-450f-997c-132de9b55b73 ,22),(23,NULL, 9bab56c8-02a7-4bed-8ddb-facfd7760cd1 ,23),(24,NULL, e95b93fe-9889-46e4-8730-8588f8ec8b3b ,24),(25,NULL, ed27f5df-e5e3-420d-a5aa-e2f289205531 ,25);
+/*!40000 ALTER TABLE   token   ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table   user  
+--
+
+DROP TABLE IF EXISTS   user  ;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE   user   (
+    user_id   bigint NOT NULL AUTO_INCREMENT,
+    created   datetime(6) DEFAULT NULL,
+    email   varchar(255) DEFAULT NULL,
+    enabled   bit(1) NOT NULL,
+    password   varchar(255) DEFAULT NULL,
+    username   varchar(255) DEFAULT NULL,
+  PRIMARY KEY (  user_id  )
+) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table   user  
+--
+
+LOCK TABLES   user   WRITE;
+/*!40000 ALTER TABLE   user   DISABLE KEYS */;
+INSERT INTO   user   VALUES (1, 2020-09-26 09:33:27.218439 , test@programming.com ,_binary  \0 , $2a$10$ThKi65uNJOlOhjWT1xe5MOgwJXh3Z2Q45LlYXjV5t8Ba8Q35uGMda , user ),(2, 2020-09-26 09:34:45.069289 , hishamazmy2015@gmail.com ,_binary  \0 , $2a$10$27w5gI2wFPAU2Wtu3vSbreLSZP2jeoG70pE/4XgoQ1wIgcsQgc8Y2 , TestUser ),(3, 2020-09-26 09:37:52.234709 , hishamazmy2015@gmail.com ,_binary  \0 , $2a$10$At3P9OXNsnX0WNl82AK/VOPEhCwyjEa9avcMWEHwj3x7rUuwughjW , TestUser ),(4, 2020-09-26 09:44:06.352916 , hishamazmy2015@gmail.com ,_binary  \0 , $2a$10$vc5/z0e1foPaFna4ce/T5ezQ13ACsikCfBPZc0qSJsihfps3WyBYO , TestUser ),(5, 2020-09-26 09:49:58.326871 , hishamazmy2015@gmail.com ,_binary  \0 , $2a$10$127OG795c43yIEwt3qsQaOr5vXHPQHgWPmss9CM9rAFqCaMwr4eV6 , TestUser ),(9, 2020-09-26 09:57:38.353865 , hishamazmy2015@gmail.com ,_binary  \0 , $2a$10$mmpa0cLJRLSDXCtlntlAZu00GlTIUAp.KfJQ11AUs/LwQXAwUmPea , TestUser ),(10, 2020-09-26 10:03:16.935297 , hishamazmy2015@gmail.com ,_binary  \0 , $2a$10$JQ16Cel1GYAeVPR2S5uLj.i2rv9e.oC8duvZjQNH3Z1.9kFkzyi5u , TestUser ),(11, 2020-09-26 10:14:43.568071 , hishamazmy2015@gmail.com ,_binary  \0 , $2a$10$Utg3m2zqVi66wbmzOGTbw.EhW3mAmS1qwUm8S41dvCwaXGUGvbPlS , TestUser ),(12, 2020-09-26 10:17:18.479999 , hishamazmy2015@gmail.com ,_binary   , $2a$10$TcIo/p1ECqPPtP8MjhvpQOdst0stoTQd.0B34eOXX1J46/H.FvR2i , TestUserH ),(13, 2020-10-08 09:50:10.185178 , user@gmail.com ,_binary  \0 , $2a$10$SDEGrLJWDTFpc20fszKOUeV9Xp.kK6mQuPxUm3NTaOqo0qVbxhJ1a , user ),(14, 2020-10-08 09:51:27.958628 , user3@gmail.com ,_binary  \0 , $2a$10$7Tw.FMbZIjN5UD/6RBw5wuNM17/N9Es66c7ijlJemClyalRdogCBe , user3 ),(15, 2020-10-08 10:34:00.836431 , user4@gmail.com ,_binary  \0 , $2a$10$NLa7OZIxBjB9scrYqDpX.usJVWWq7/1QhCCtQ3osODPArFbCXWHbe , user4 ),(16, 2020-10-08 10:34:23.280999 , hishamazmy2015@gmail.com ,_binary  \0 , $2a$10$929eEj18f29cU9SubjbVm.mh.6kTPLTk41/RHCo48ToGelbbFJEvG , user5 ),(17, 2020-10-08 10:49:01.979588 , hishamazmy2015@gmail.com ,_binary  \0 , $2a$10$JHSfMUag/AXunKZbgH7wK.UR8HRowKHVRe.NhE0rRUxApPkMfoH1y , user ),(18, 2020-10-08 10:52:02.325022 , hazmy@activedd.com ,_binary   , $2a$10$ZQpEJawxJOjrKGQl41g5suzsPh9uAAxufAHcf2H3T/KVNbzyAXzJy , hisham ),(19, 2020-10-08 11:10:45.330295 , hazmy@activedd.com ,_binary   , $2a$10$r2RNq0pb9TbWNGuxes2h/epy5NLo9zTflCiOVWvVBpACvZdjns9K6 , hisham2 ),(20, 2020-10-09 07:46:46.599424 , hazmy@activedd.com ,_binary  \0 , $2a$10$ZsOZmAaYVgoyU2nTTMElPuZKSzlA4ua1mSITT.8hn85/ZGdP7eMwG , hisham3 ),(21, 2020-10-09 07:47:04.197240 , hazmy@activedd.com ,_binary  \0 , $2a$10$XBSvXjRzwaiEUaZqCkVa2Osc.cJGOC/siTk3A7a2Cv347qmI5ADGa , hisham4 ),(22, 2020-10-09 12:27:13.464287 , hazmy@activedd.com ,_binary  \0 , $2a$10$Ry17OHn5cws2x4P4PalhqOz6eKYqbhx1viW.tPMVp0ONJfiU.pCVO , hisham4 ),(23, 2020-10-09 12:27:23.975278 , hazmy@activedd.com ,_binary  \0 , $2a$10$Xp04NdV6p84Fnn4zZbsGQ.AKXfeuCfqKrCb/0cTQYbXF2EhOvmO/O , hisham4 ),(24, 2020-10-09 16:30:54.081447 , sofya9009@dnawr.com ,_binary   , $2a$10$v4gvEo5FXVYKjw0Ghmr/ZeZWNCtQ7iNoYC9G.2XRKwGU.oei43bza , sofa ),(25, 2020-10-10 06:36:12.329797 , lolo@gmail.com ,_binary   , $2a$10$Je2Jeh18sI/T4fSE6FTiE.UFasibngaFILEoaO.kbcwm3PRhM.aRm , lolo );
+/*!40000 ALTER TABLE   user   ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table   vote  
+--
+
+DROP TABLE IF EXISTS   vote  ;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE   vote   (
+    vote_id   bigint NOT NULL AUTO_INCREMENT,
+    vote_type   int DEFAULT NULL,
+    post_id   bigint NOT NULL,
+    user_id   bigint DEFAULT NULL,
+  PRIMARY KEY (  vote_id  ),
+  KEY   FKl3c067ewaw5xktl5cjvniv3e9   (  post_id  ),
+  KEY   FKcsaksoe2iepaj8birrmithwve   (  user_id  ),
+  CONSTRAINT   FKcsaksoe2iepaj8birrmithwve   FOREIGN KEY (  user_id  ) REFERENCES   user   (  user_id  ),
+  CONSTRAINT   FKl3c067ewaw5xktl5cjvniv3e9   FOREIGN KEY (  post_id  ) REFERENCES   post   (  post_id  )
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table   vote  
+--
+
+LOCK TABLES   vote   WRITE;
+/*!40000 ALTER TABLE   vote   DISABLE KEYS */;
+INSERT INTO   vote   VALUES (1,1,2,19),(2,NULL,1,25),(3,NULL,2,25),(4,NULL,3,25);
+/*!40000 ALTER TABLE   vote   ENABLE KEYS */;
+UNLOCK TABLES;
+/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
+
+/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
+/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
+/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
+
+-- Dump completed on 2020-10-13 12:59:22
