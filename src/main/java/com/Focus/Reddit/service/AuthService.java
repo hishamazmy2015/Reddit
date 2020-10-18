@@ -12,6 +12,9 @@ import com.Focus.Reddit.repository.UserRepository;
 import com.Focus.Reddit.repository.VerificationTokenRepository;
 import com.Focus.Reddit.security.JwtProvider;
 import lombok.AllArgsConstructor;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.beans.factory.annotation.Value;
+
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -36,6 +39,8 @@ public class AuthService {
     private final MailService mailService;
     private final JwtProvider jwtProvider;
 
+    //    @Value("${URL_SITE}")
+    private final String URL_SITE = "https://pivotal-industry.herokuapp.com";
 
     private final UserRepository userRepository;
 
@@ -57,12 +62,13 @@ public class AuthService {
 
         String token = generateVerificationToken(user);
         System.out.println("To this point signup is ok");
-        mailService.sendMail(
+        mailService.sendMail(user.getEmail(),
                 new NotificationEmail("please Active your Account", user.getEmail(),
-                        "Thanks for Sign up please click here to redirect   +" +
-                                "http://localhost:8080/api/auth/accountVerification/" + token));
+                        "Thanks for Sign up please click here to redirect   " +
+                                URL_SITE + "/api/auth/accountVerification/" + token));
     }
-
+//    http://localhost:8080
+//    URL_SITE
 
     private String generateVerificationToken(User user) {
         String token = UUID.randomUUID().toString();

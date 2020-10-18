@@ -20,11 +20,11 @@ public class MailService {
     private final MailContentBuilder mailContainBuilder;
 
     @Async
-    void sendMail(NotificationEmail notificationEmail) {
+    void sendMail(String to,NotificationEmail notificationEmail) {
         MimeMessagePreparator mimeMessagePreparator = mimeMessage -> {
             MimeMessageHelper messageHelper = new MimeMessageHelper(mimeMessage);
-            messageHelper.setFrom("Spring@gmail.com");
-            messageHelper.setTo(notificationEmail.getRecipient());
+            messageHelper.setFrom("Aljazri@Company.com");
+            messageHelper.setTo(to);
             messageHelper.setSubject(notificationEmail.getSubject());
             messageHelper.setText(notificationEmail.getBody());
         };

@@ -59,7 +59,7 @@ public class CommentService {
     }
 
     private void sendMailNotification(String message, User user) {
-        mailService.sendMail(new NotificationEmail(user.getUsername(), user.getEmail(), message));
+        mailService.sendMail(user.getEmail(), new NotificationEmail(user.getUsername(), user.getEmail(), message));
     }
 
     @org.springframework.transaction.annotation.Transactional(readOnly = true)
