@@ -41,6 +41,7 @@ public class AuthService {
 
     //    @Value("${URL_SITE}")
     private final String URL_SITE = "https://pivotal-industry.herokuapp.com";
+//    private final String URL_SITE = "http://localhost:8080";
 
     private final UserRepository userRepository;
 
@@ -59,6 +60,25 @@ public class AuthService {
         user.setEnabled(false);
 
         userRepository.save(user);
+        System.out.println(" Send the Email successfully ");
+        System.out.println(" Send the Email successfully ");
+        System.out.println(" Send the Email successfully ");
+        System.out.println(" Send the Email successfully ");
+        System.out.println(" Send the Email successfully ");
+        System.out.println(" Send the Email successfully ");
+        System.out.println(" Send the Email successfully ");
+        System.out.println(" Send the Email successfully ");
+        System.out.println(" Send the Email successfully ");
+        System.out.println(" Send the Email successfully ");
+        System.out.println(" Send the Email successfully ");
+        System.out.println(" Send the Email successfully ");
+        System.out.println(" Send the Email successfully ");
+        System.out.println(" Send the Email successfully ");
+        System.out.println(" Send the Email successfully ");
+        System.out.println(" Send the Email successfully ");
+        System.out.println(" Send the Email successfully ");
+        System.out.println(" Send the Email successfully ");
+        System.out.println(" Send the Email successfully ");
 
         String token = generateVerificationToken(user);
         System.out.println("To this point signup is ok");
@@ -66,6 +86,9 @@ public class AuthService {
                 new NotificationEmail("please Active your Account", user.getEmail(),
                         "Thanks for Sign up please click here to redirect   " +
                                 URL_SITE + "/api/auth/accountVerification/" + token));
+        System.out.println(" All >>>>>>>>>>>>>>>>> Send the Email successfully "+URL_SITE + "/api/auth/accountVerification/" + token);
+        System.out.println(" URL_SITE and verification >>>>>>>>>>>>>>>>> Send the Email successfully "+URL_SITE + "/api/auth/accountVerification/");
+        System.out.println(" URL_SITE only >>>>>>>>>>>>>>>>> Send the Email successfully "+URL_SITE );
     }
 //    http://localhost:8080
 //    URL_SITE
