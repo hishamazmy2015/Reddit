@@ -1,0 +1,59 @@
+package codeForces;
+
+import java.util.Scanner;
+
+public class Sum_of_Digits {
+
+	static int tempo = 0;
+
+	static int[] arr;
+	static int Counter = 0;
+
+	public static void main(String[] args) {
+
+		Scanner scan = new Scanner(System.in);
+
+		String str = scan.next();
+		scan.nextLine();
+
+		char[] chars = str.toCharArray();
+
+		arr = new int[str.length()];
+		for (int i = 0; i < str.length(); i++) {
+			arr[i] = Integer.parseInt(String.valueOf(chars[i]));
+		}
+
+		int tem_sum;
+		do {
+			tem_sum = 0;
+			for (int i = 0; i < arr.length; i++) {
+				tem_sum += arr[i];
+			}
+
+
+			if (tem_sum <= 9) {
+				break;
+			}
+			if (tem_sum != 0)
+				Counter++;
+			Count(String.valueOf(tem_sum));
+		} while (arr.length != 1);
+		System.out.println(Counter);
+	}
+
+	public static void Count(String str) {
+		char[] chars = str.toCharArray();
+
+		arr = new int[str.length()];
+		for (int i = 0; i < str.length(); i++) {
+			arr[i] = Integer.parseInt(String.valueOf(chars[i]));
+		}
+
+	}
+
+}
+
+
+
+
+

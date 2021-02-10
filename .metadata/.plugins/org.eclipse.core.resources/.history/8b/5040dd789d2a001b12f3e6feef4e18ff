@@ -1,0 +1,72 @@
+package com.mr.app.dto;
+
+public class MaterialInfoDTO {
+
+	public MaterialInfoDTO() {
+
+	}
+
+	public MaterialInfoDTO(int id, String doctorName, String materialName, String dateFrom, String dateTo) {
+		this.id = id;
+		this.doctorName = doctorName;
+		this.materialName = materialName;
+		this.dateFrom = dateFrom;
+		this.dateTo = dateTo;
+	}
+
+	public MaterialInfoDTO(int id, String doctorName, String materialName) {
+		this.id = id;
+		this.doctorName = doctorName;
+		this.materialName = materialName;
+	}
+
+	private int id;
+
+	private String doctorName;
+
+	private String materialName;
+
+	private String dateFrom;
+	private String dateTo;
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public String getDoctorName() {
+		return doctorName;
+	}
+
+	public void setDoctorName(String doctorName) {
+		this.doctorName = doctorName;
+	}
+
+	public String getMaterialName() {
+		return materialName;
+	}
+
+	public void setMaterialName(String materialName) {
+		this.materialName = materialName;
+	}
+
+	public String getDateFrom() {
+		return dateFrom;
+	}
+
+	public void setDateFrom(String dateFrom) {
+		this.dateFrom = dateFrom;
+	}
+
+	public String getDateTo() {
+		return dateTo;
+	}
+
+	public void setDateTo(String dateTo) {
+		this.dateTo = dateTo;
+	}
+
+}

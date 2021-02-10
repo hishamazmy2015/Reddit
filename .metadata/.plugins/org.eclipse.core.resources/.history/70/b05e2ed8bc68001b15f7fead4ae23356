@@ -1,0 +1,40 @@
+package codeForces;
+
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Scanner;
+import java.util.Set;
+
+public class Coins {
+
+	static int tempo = 0;
+
+	static int[] arr;
+	static int Counter = 0;
+
+	public static void main(String[] args) {
+
+		Scanner scan = new Scanner(System.in);
+
+		String str = "";
+//		= scan.next();
+
+		Map<Character, Integer> coins = new HashMap<Character, Integer>();
+
+		coins.put('A', 0);
+		coins.put('B', 0);
+		coins.put('C', 0);
+
+		for (int i = 0; i < 3; i++) {
+			str = scan.nextLine();
+			for (Character key : coins.keySet()) {
+				if (key.equals(str.charAt(0)) && str.charAt(1) == '>') {
+					coins.put(key, coins.get(key) + 1);
+					System.out.println("key " + key + " Val " + coins.get(key));
+				} else if (key.equals(str.charAt(2)) && str.charAt(1) == '<') {
+					coins.put(key, coins.get(key) + 1);
+				}
+			}
+		}
+	}
+}

@@ -1,0 +1,39 @@
+package codeForces;
+
+import java.util.Scanner;
+
+public class Caisa_and_Pylons {
+
+	public static void main(String[] args) {
+
+		Scanner scan = new Scanner(System.in);
+		int maxHeight = 0;
+		int n = scan.nextInt();
+		scan.nextLine();
+		int distances[] = new int[n];
+
+		int dolars = 0;
+		int energy = 0;
+
+		for (int i = 0; i < n; i++) {
+			if (i == 0)
+				dolars = distances[0];
+			distances[i] = scan.nextInt();
+		}
+
+		for (int i = 1; i < n; i++) {
+			if (energy < distances[i]) {
+				dolars += distances[i];
+			}
+
+			if (distances[i] > distances[i - 1]) {
+				dolars = distances[i] - distances[i - 1] - energy;
+			} else {
+				energy = distances[i - 1] - distances[i];
+			}
+		}
+
+		System.out.println(maxHeight);
+	}
+
+}

@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Copy element &apos;Sum_of_Digits.java&apos; to &apos;codeForces.Sum_of_Digits.java&apos;&#x0A;- Original project: &apos;CodeForces&apos;&#x0A;- Destination element: &apos;codeForces.Sum_of_Digits.java&apos;&#x0A;- Original element: &apos;codeForces.Sum_of_Digits.java&apos;" description="Copy compilation unit" destination="/src&lt;codeForces{Sum_of_Digits.java" element1="/src&lt;codeForces{Sum_of_Digits.java" files="0" flags="589830" folders="0" id="org.eclipse.jdt.ui.copy" policy="org.eclipse.jdt.ui.copyResources" stamp="1612631769735" units="1" version="1.0"/>
+</session>

@@ -1,0 +1,289 @@
+package com.mr.app.dto;
+
+import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
+import javax.validation.constraints.NotNull;
+
+public class MaterialAssignmentDTO {
+
+	@NotNull
+	private String name;
+	@NotNull
+	private String collegeCode;
+	@NotNull
+	private String departmentCode;
+	@NotNull
+	private String doctorCode;
+	@NotNull
+	private String materialCode;
+	@NotNull
+	private String classesCode;
+	private String isExam;
+	private String SaturdayFrom;
+	private String SaturdayTo;
+	private String SundayFrom;
+	private String SundayTo;
+	private String MondayFrom;
+	private String MondayTo;
+	private String TuesdayFrom;
+	private String TuesdayTo;
+	private String WednesdayFrom;
+	private String WednesdayTo;
+	private String ThursdayFrom;
+	private String ThursdayTo;
+	private String FridayFrom;
+	private String FridayTo;
+
+	public MaterialAssignmentDTO(String materialCode, String doctorCode, Timestamp saturdayFrom, Timestamp saturdayTo) {
+		this.doctorCode = doctorCode;
+		this.materialCode = materialCode;
+		SaturdayFrom = convertTimeToString(saturdayFrom);
+		SaturdayTo = convertTimeToString(saturdayTo);
+	}
+
+	public MaterialAssignmentDTO(String materialCode, String doctorCode, String saturdayFrom, String saturdayTo,
+			String sundayFrom, String sundayTo, String mondayFrom, String mondayTo, String tuesdayFrom,
+			String tuesdayTo, String wednesdayFrom, String wednesdayTo, String thursdayFrom, String thursdayTo,
+			String fridayFrom, String fridayTo) {
+		this.doctorCode = doctorCode;
+		this.materialCode = materialCode;
+		SaturdayFrom = saturdayFrom;
+		SaturdayTo = saturdayTo;
+		SundayFrom = sundayFrom;
+		SundayTo = sundayTo;
+		MondayFrom = mondayFrom;
+		MondayTo = mondayTo;
+		TuesdayFrom = tuesdayFrom;
+		TuesdayTo = tuesdayTo;
+		WednesdayFrom = wednesdayFrom;
+		WednesdayTo = wednesdayTo;
+		ThursdayFrom = thursdayFrom;
+		ThursdayTo = thursdayTo;
+		FridayFrom = fridayFrom;
+		FridayTo = fridayTo;
+	}
+
+	public MaterialAssignmentDTO(@NotNull String name, @NotNull String collegeCode, @NotNull String departmentCode,
+			@NotNull String doctorCode, @NotNull String materialCode, @NotNull String classesCode, String saturdayFrom,
+			String saturdayTo, String sundayFrom, String sundayTo, String mondayFrom, String mondayTo,
+			String tuesdayFrom, String tuesdayTo, String wednesdayFrom, String wednesdayTo, String thursdayFrom,
+			String thursdayTo, String fridayFrom, String fridayTo) {
+		this.name = name;
+		this.collegeCode = collegeCode;
+		this.departmentCode = departmentCode;
+		this.doctorCode = doctorCode;
+		this.materialCode = materialCode;
+		this.classesCode = classesCode;
+		SaturdayFrom = saturdayFrom;
+		SaturdayTo = saturdayTo;
+		SundayFrom = sundayFrom;
+		SundayTo = sundayTo;
+		MondayFrom = mondayFrom;
+		MondayTo = mondayTo;
+		TuesdayFrom = tuesdayFrom;
+		TuesdayTo = tuesdayTo;
+		WednesdayFrom = wednesdayFrom;
+		WednesdayTo = wednesdayTo;
+		ThursdayFrom = thursdayFrom;
+		ThursdayTo = thursdayTo;
+		FridayFrom = fridayFrom;
+		FridayTo = fridayTo;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public String getCollegeCode() {
+		return collegeCode;
+	}
+
+	public void setCollegeCode(String collegeCode) {
+		this.collegeCode = collegeCode;
+	}
+
+	public String getDepartmentCode() {
+		return departmentCode;
+	}
+
+	public void setDepartmentCode(String departmentCode) {
+		this.departmentCode = departmentCode;
+	}
+
+	public String getDoctorCode() {
+		return doctorCode;
+	}
+
+	public void setDoctorCode(String doctorCode) {
+		this.doctorCode = doctorCode;
+	}
+
+	public String getMaterialCode() {
+		return materialCode;
+	}
+
+	public void setMaterialCode(String materialCode) {
+		this.materialCode = materialCode;
+	}
+
+	public String getClassesCode() {
+		return classesCode;
+	}
+
+	public void setClassesCode(String classesCode) {
+		this.classesCode = classesCode;
+	}
+
+	public String getIsExam() {
+		return isExam;
+	}
+
+	public void setIsExam(String isExam) {
+		this.isExam = isExam;
+	}
+
+	public Timestamp getSaturdayFrom() {
+		return convertToTime(SaturdayFrom);
+	}
+
+	public void setSaturdayFrom(String saturdayFrom) {
+		SaturdayFrom = saturdayFrom;
+	}
+
+	public Timestamp getSaturdayTo() {
+		return convertToTime(SaturdayTo);
+	}
+
+	public void setSaturdayTo(String saturdayTo) {
+		SaturdayTo = saturdayTo;
+	}
+
+	public Timestamp getSundayFrom() {
+		return convertToTime(SundayFrom);
+	}
+
+	public void setSundayFrom(String sundayFrom) {
+		SundayFrom = sundayFrom;
+	}
+
+	public Timestamp getSundayTo() {
+		return convertToTime(SundayTo);
+	}
+
+	public void setSundayTo(String sundayTo) {
+		SundayTo = sundayTo;
+	}
+
+	public Timestamp getMondayFrom() {
+		return convertToTime(MondayFrom);
+	}
+
+	public void setMondayFrom(String mondayFrom) {
+		MondayFrom = mondayFrom;
+	}
+
+	public Timestamp getMondayTo() {
+		return convertToTime(MondayTo);
+	}
+
+	public void setMondayTo(String mondayTo) {
+		MondayTo = mondayTo;
+	}
+
+	public Timestamp getTuesdayFrom() {
+		return convertToTime(TuesdayFrom);
+	}
+
+	public void setTuesdayFrom(String tuesdayFrom) {
+		TuesdayFrom = tuesdayFrom;
+	}
+
+	public Timestamp getTuesdayTo() {
+		return convertToTime(TuesdayTo);
+	}
+
+	public void setTuesdayTo(String tuesdayTo) {
+		TuesdayTo = tuesdayTo;
+	}
+
+	public Timestamp getWednesdayFrom() {
+		return convertToTime(WednesdayFrom);
+	}
+
+	public void setWednesdayFrom(String wednesdayFrom) {
+		WednesdayFrom = wednesdayFrom;
+	}
+
+	public Timestamp getWednesdayTo() {
+		return convertToTime(WednesdayTo);
+	}
+
+	public void setWednesdayTo(String wednesdayTo) {
+		WednesdayTo = wednesdayTo;
+	}
+
+	public Timestamp getThursdayFrom() {
+		return convertToTime(ThursdayFrom);
+	}
+
+	public void setThursdayFrom(String thursdayFrom) {
+		ThursdayFrom = thursdayFrom;
+	}
+
+	public Timestamp getThursdayTo() {
+		return convertToTime(ThursdayTo);
+	}
+
+	public void setThursdayTo(String thursdayTo) {
+		ThursdayTo = thursdayTo;
+	}
+
+	public Timestamp getFridayFrom() {
+		return convertToTime(FridayFrom);
+	}
+
+	public void setFridayFrom(String fridayFrom) {
+		FridayFrom = fridayFrom;
+	}
+
+	public Timestamp getFridayTo() {
+		return convertToTime(FridayTo);
+	}
+
+	public void setFridayTo(String fridayTo) {
+		FridayTo = fridayTo;
+	}
+
+	public static Timestamp convertToTime(String time) {
+		try {
+
+			SimpleDateFormat dateFormat = new SimpleDateFormat("hh:mm a");
+			Date date = dateFormat.parse(time);
+			java.sql.Date dateDB = new java.sql.Date(date.getTime());
+			Timestamp timestamp = new Timestamp(dateDB.getTime());
+			return timestamp;
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		return null;
+	}
+
+	public static String convertTimeToString(Timestamp time) {
+		try {
+			String formattedDate = new SimpleDateFormat("yyyyMMdd").format(time);
+
+			SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
+
+			return dateFormat.format(time);
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		return null;
+	}
+}

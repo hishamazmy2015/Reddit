@@ -1,0 +1,28 @@
+package com.mr.app.repository;
+
+import java.util.List;
+
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.CrudRepository;
+import org.springframework.stereotype.Repository;
+
+import com.mr.app.dto.GeneralDTO;
+import com.mr.app.entity.Classes;
+import com.mr.app.entity.DAOUser;
+import com.mr.app.entity.Doctor;
+
+@Repository
+public interface ClassesRepository extends CrudRepository<Classes, Integer>{
+
+	Classes findByCode(String classesCode);
+
+	@Query("select new com.mr.app.dto.GeneralDTO(e.id, e.name, e.code) from Classes e Where e.college.id =:id")
+	 List<GeneralDTO> findIdsAndNames(int id);
+	
+	@Query("select d from Classes d where d.user_id=:userId")
+	Classes findByUserId(int userId);
+	
+	Classes findByUser(DAOUser user);
+
+	
+}

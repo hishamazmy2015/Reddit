@@ -1,0 +1,103 @@
+package codeForces;
+
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Scanner;
+import java.util.Set;
+
+public class Coins {
+
+	static int tempo = 0;
+
+	static int[] arr;
+	static int Counter = 0;
+
+	public static void main(String[] args) {
+
+		Scanner scan = new Scanner(System.in);
+
+		String str = scan.next();
+		scan.nextLine();
+
+
+		Map<Character, Integer> coins = new HashMap<Character, Integer>();
+		
+		coins.put('A',0);
+		coins.put('B',0);
+		coins.put('C',0);
+		
+
+		
+		char[] chars;
+		for (int i = 0; i < 3; i++) {
+			str=scan.next();
+			chars = str.toCharArray();		
+			for (Character key:coins.keySet()) {
+				key.equals(chars[i]);
+				coins.put(key, coins.get(key) + 1);
+				System.out.println("key is "+key);
+				System.out.println("Val is "+coins.get(key));
+			}
+		}
+		
+//		for (Character key:coins.keySet()) {
+//			key
+//			str=scan.next();
+//		}
+		
+		if(chars[1]=='>') {
+			coins.keySet().['A']
+		}
+
+		Set<Character> keySet = coins.keySet();
+		
+		int tem_sum;
+
+		if (arr.length <= 1)
+			Counter = 0;
+		else
+			do {
+				Counter++;
+				tem_sum = 0;
+				for (int i = 0; i < arr.length; i++) {
+					tem_sum += arr[i];
+				}
+
+				if (tem_sum <= 9) {
+					break;
+				}
+				Count(String.valueOf(tem_sum));
+			} while (arr.length != 1);
+		System.out.println(Counter);
+	}
+
+	public static void Count(String str) {
+		char[] chars = str.toCharArray();
+
+		arr = new int[str.length()];
+		for (int i = 0; i < str.length(); i++) {
+			arr[i] = Integer.parseInt(String.valueOf(chars[i]));
+		}
+
+	}
+
+}
+
+//lic class LCPC_training {
+//	 
+//    public static void main(String[] args) {
+//        Scanner s = new Scanner(System.in);
+//        String l = s.nextLine();
+//        int count = 0;
+//        int length = l.length();
+//        while (length > 1) {
+//            int sum = 0;
+//            for (int i = 0; i < length; i++) {
+//                sum += l.charAt(i) - '0';
+//            }
+//            l = "" + sum;
+//            length = l.length();
+//            ++count;
+//        }
+//        System.out.println(count);
+//    }

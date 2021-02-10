@@ -69,13 +69,13 @@ public class CommentService {
     }
 
 
-    public List<PostResponse> getPostsBySubreddit(Long subredditid) {
-
-        Subreddit subreddit = subredditRepository.findById(subredditid).orElseThrow(() -> new SubredditNotFoundException(" Subreddit not exsit"));
-        return postRepository.findAllBySubreddit(subreddit).stream().
-                map(postMapper::mapPostToDto).collect(toList());
-
-    }
+//    public List<PostResponse> getPostsBySubreddit(Long subredditid) {
+//
+//        Subreddit subreddit = subredditRepository.findById(subredditid).orElseThrow(() -> new SubredditNotFoundException(" Subreddit not exsit"));
+//        return postRepository.findAllBySubreddit(subreddit).stream().
+//                map(postMapper::mapPostToDto).collect(toList());
+//
+//    }
 
     public List<PostResponse> getPostByUserName(String username) {
         User user = userRepository.findByUsername(username).orElseThrow(() -> new UsernameNotFoundException(username));

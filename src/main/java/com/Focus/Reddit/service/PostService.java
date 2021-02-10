@@ -32,7 +32,7 @@ import static java.util.stream.Collectors.*;
 @org.springframework.transaction.annotation.Transactional
 public class PostService {
 
-    private final SubredditRepository subredditRepository;
+    //    private final SubredditRepository subredditRepository;
     private final UserRepository userRepository;
     private final PostRepository postRepository;
     private final PostMapper postMapper;
@@ -45,16 +45,13 @@ public class PostService {
         User currentUser = authService.getCurrentUser();
         System.out.println("Desc is ");
         System.out.println("Desc is ");
-        System.out.println("Desc is ");
-        System.out.println("Desc is ");
-        System.out.println("Desc is ");
-        System.out.println(postRequest.getSubredditName());
+//        System.out.println(postRequest.getSubredditName());
         System.out.println("End of Desc is is         System.out.println ");
 
-        Subreddit subreddit = subredditRepository.findByName(postRequest.getSubredditName()).orElseThrow(() -> new SubredditNotFoundException(
-                postRequest.getSubredditName()));
+//        Subreddit subreddit = subredditRepository.findByName(postRequest.getSubredditName()).orElseThrow(() -> new SubredditNotFoundException(
+//                postRequest.getSubredditName()));
 
-        postRepository.save(postMapper.map(postRequest, subreddit, currentUser));
+        postRepository.save(postMapper.map(postRequest, currentUser));
 
 
     }
@@ -73,13 +70,14 @@ public class PostService {
                 collect(toList());
     }
 
-    public List<PostResponse> getPostsBySubreddit(Long subredditid) {
-
-        Subreddit subreddit = subredditRepository.findById(subredditid).orElseThrow(() -> new SubredditNotFoundException(" Subreddit not exsit"));
-        return postRepository.findAllBySubreddit(subreddit).stream().
-                map(postMapper::mapPostToDto).collect(toList());
-
-    }
+//    public List<PostResponse> getPostsBySubreddit(Long subredditid) {
+//
+//        Subreddit subreddit = subredditRepository.findById(subredditid).orElseThrow(() -> new SubredditNotFoundException(" Subreddit not exsit"));
+//        return null;
+////        postRepository.findAll();BySubreddit(subreddit).stream().
+////                map(postMapper::mapPostToDto).collect(toList());
+//
+//    }
 
     public List<PostResponse> getPostByUserName(String username) {
         User user = userRepository.findByUsername(username).orElseThrow(() -> new UsernameNotFoundException(username));
@@ -89,4 +87,7 @@ public class PostService {
 
     }
 
+    public void deletePost(Long postId) {
+        postRepository.deleteById(postId);
+    }
 }

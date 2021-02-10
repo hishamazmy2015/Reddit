@@ -1,0 +1,112 @@
+package com.mr.app.service;
+
+import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
+import java.util.List;
+
+import org.modelmapper.ModelMapper;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Service;
+import com.mr.app.dto.ClassesDTO;
+import com.mr.app.dto.MaterialAssignmentDTO;
+import com.mr.app.dto.MaterialDTO;
+import com.mr.app.dto.MaterialInfoDTO;
+import com.mr.app.entity.Classes;
+import com.mr.app.entity.College;
+import com.mr.app.entity.DAOUser;
+import com.mr.app.entity.Doctor;
+import com.mr.app.entity.MaterialAssignment;
+import com.mr.app.repository.ClassesRepository;
+import com.mr.app.repository.CollegeRepository;
+import com.mr.app.repository.MaterialAssignmentRepository;
+import com.mr.app.repository.UserRepository;
+
+@Service
+public class ClassesService {
+
+	@Autowired
+	private ClassesRepository classesRepository;
+
+	@Autowired
+	private UserRepository userRepository;
+
+	@Autowired
+	private CollegeRepository collegeRepository;
+
+	@Autowired
+	private MaterialAssignmentRepository mtr;
+
+	public ResponseEntity<?> addClass(ClassesDTO dto, String username) {
+
+		try {
+			ModelMapper maper = new ModelMapper();
+			Classes cls = maper.map(dto, Classes.class);
+			College college = collegeRepository.findByCode(dto.getCollegeCode());
+			cls.setCollege(college);
+			DAOUser user = userRepository.findByUsername(username);
+			cls.setCreatedBy(user.getId());
+			cls.setCreatedAt(new Timestamp(System.currentTimeMillis()));
+			cls.setActive("Y");
+			classesRepository.save(cls);
+			return ResponseEntity.ok("Added");
+		} catch (DataIntegrityViolationException e) {
+			return ResponseEntity.badRequest().body("Duplicated Code!");
+		} catch (Exception e) {
+			return ResponseEntity.badRequest().body("Failed!");
+		}
+	}
+
+	public ResponseEntity<?> getAll(int id) {
+		return ResponseEntity.ok(classesRepository.findIdsAndNames(id));
+	}
+
+	public ResponseEntity<?> getAssignedData(int classId) {
+		try {
+			Classes cl = classesRepository.findByUserId(classId);
+			if (cl == null)
+				return ResponseEntity.badRequest().body("No Doctor found related to this id");
+			List<MaterialDTO> materials = null;
+			materials = mtr.findExamsForClassByClassId(cl.getId());
+			return ResponseEntity.ok().body(materials);
+		} catch (Exception e) {
+			return ResponseEntity.badRequest().body("Failure");
+		}
+
+	}
+
+	public ResponseEntity<?> getِِAttendancetable(int userId) {
+		System.out.println("userId ...." + userId);
+		try {
+
+			DAOUser daoUser = userRepository.findById(userId).orElseThrow(() -> new Exception("Id of user not exist"));
+			System.out.println("daoUser 1 ...." + daoUser.getId());
+
+			
+			Classes cl = classesRepository.findByUser(daoUser);
+			System.out.println("c1 1 ...." + cl.getId());
+
+			
+			if (cl == null)
+				return ResponseEntity.badRequest().body("No class found related to this id");
+//			System.out.println("cl  ...." + cl.getId());
+
+//			List<MaterialAssignmentDTO> materials = mtr.findByClassId(cl.getId())
+			for (MaterialInfoDTO materialInfoDTO : mtr.findByClassId(cl.getId())) {
+				System.out.println(materialInfoDTO.getDoctorCode());
+				System.out.println(materialInfoDTO.getFridayTo());
+
+//				System.out.println(materialInfoDTO.getDoctorName());
+//				System.out.println(materialInfoDTO.getMaterialName());
+//				System.out.println(materialInfoDTO.getDateFrom());
+			}
+
+			return ResponseEntity.ok().body(mtr.findByClassId(8));
+		} catch (Exception e) {
+			return ResponseEntity.badRequest().body("Failure");
+		}
+
+	}
+
+}

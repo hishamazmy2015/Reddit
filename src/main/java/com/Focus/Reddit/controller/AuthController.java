@@ -37,7 +37,9 @@ public class AuthController {
     }
 
     @PostMapping("/login")
-    public AuthenticationResponse login(@RequestBody LoginRequest loginRequest) throws UsernameNotFoundException {
+    public AuthenticationResponse login(@RequestBody LoginRequest loginRequest)
+            throws UsernameNotFoundException {
+
         return authService.login(loginRequest);
     }
 

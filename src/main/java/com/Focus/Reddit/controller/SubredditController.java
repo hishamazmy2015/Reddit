@@ -27,20 +27,20 @@ public class SubredditController {
                 body(subredditService.save(subredditDto));
     }
  
-    @GetMapping("/")
-    public ResponseEntity<List<SubredditDto>> getAllSubreddits() {
-        return ResponseEntity
-                .status(HttpStatus.OK)
-                .body(subredditService.getAll());
-    }
+//    @GetMapping("/")
+//    public ResponseEntity<List<SubredditDto>> getAllSubreddits() {
+//        return ResponseEntity
+//                .status(HttpStatus.OK)
+//                .body(subredditService.getAll());
+//    }
 
-    @GetMapping("/{id}")
-    public ResponseEntity<SubredditDto> createSubreddit(@PathVariable Long id) {
-        return ResponseEntity.status(HttpStatus.CREATED).
-                body(subredditService.getSubredit(id));
-
-
-    }
+//    @GetMapping("/{id}")
+//    public ResponseEntity<SubredditDto> createSubreddit(@PathVariable Long id) {
+//        return ResponseEntity.status(HttpStatus.CREATED).
+//                body(subredditService.getSubredit(id));
+//
+//
+//    }
 
 
 }

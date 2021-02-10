@@ -1,0 +1,59 @@
+package com.mr.app.repository;
+
+import java.util.List;
+
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.CrudRepository;
+
+import com.mr.app.dto.MaterialDTO;
+import com.mr.app.entity.Material;
+import com.mr.app.entity.MaterialAssignment;
+import com.mr.app.entity.Profile;
+
+public interface MaterialAssignmentRepository extends CrudRepository<MaterialAssignment, Integer> {
+
+	@Query("select distinct new com.mr.app.dto.MaterialDTO(e.id,e.name,e.code,m.id)"
+			+ " from MaterialAssignment m Inner Join m.material e "
+			+ " where m.department.id =:departmentId and m.isExam ='N' ")
+	List<MaterialDTO> findMaterialForStudentByDepartmentId(int departmentId);
+	
+	@Query("select distinct new com.mr.app.dto.MaterialDTO(e.id,e.name,e.code,m.id) "
+			+ "from MaterialAssignment m Inner Join m.material e "
+			+ " where m.department.id =:departmentId and m.isExam ='Y' ")
+	List<MaterialDTO> findExamsForStudentByDepartmentId(int departmentId);
+	
+	@Query("select distinct new com.mr.app.dto.MaterialDTO(e.id,e.name,e.code,m.id) "
+			+ "from MaterialAssignment m Inner Join m.material e "
+			+ " where m.doctor.id =:doctorId and m.isExam ='N' ")
+	List<MaterialDTO> findMaterialForDoctorByDoctorId(int doctorId);
+	
+	@Query("select distinct new com.mr.app.dto.MaterialDTO(e.id,e.name,e.code,m.id)"
+			+ " from MaterialAssignment m Inner Join m.material e "
+			+ " where m.doctor.id =:doctorId and m.isExam ='Y' ")
+	List<MaterialDTO> findExamsForDoctorByDoctorId(int doctorId);
+	
+	@Query("select distinct new com.mr.app.dto.MaterialDTO(e.id,e.name,e.code,m.id)"
+			+ " from MaterialAssignment m Inner Join m.doctor e "
+			+ " where m.department.id =:departmentId")
+	List<MaterialDTO> findDoctorsForDepartment(int departmentId);
+	
+	@Query("select distinct p "
+			+ " from MaterialAssignment m Inner Join m.doctor e "
+			+ " Inner Join e.user u"
+			+ " Inner Join Profile p on u.id = p.user "
+			+ " where m.department.id =:departmentId")
+	List<Profile> findDoctorsForDepartment2(int departmentId);
+	
+	@Query("select distinct new com.mr.app.dto.MaterialDTO(e.id,e.name,e.code,m.id)"
+			+ " from MaterialAssignment m Inner Join m.material e "
+			+ " where m.classes.id =:classId and m.isExam ='Y' ")
+	List<MaterialDTO> findExamsForClassByClassId(int classId);
+	
+	
+
+	@Query("select distinct new com.mr.app.dto.MaterialDTO(e.id,e.name,e.code,m.id)"
+			+ " from MaterialAssignment m Inner Join m.material e "
+			+ " where m.classes.id =:classId and m.isExam ='Y' ")
+	List<MaterialDTO> findExamsForClassByClassId(int classId);
+	
+}

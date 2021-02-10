@@ -1,0 +1,50 @@
+package com.mr.app.controller;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.mr.app.dto.ClassesDTO;
+import com.mr.app.dto.GeneralDTO;
+import com.mr.app.dto.IdsDTO;
+import com.mr.app.service.ClassesService;
+
+@RestController
+@RequestMapping("classes")
+@CrossOrigin
+public class ClassesController {
+	
+	@Autowired
+	private ClassesService classesService;
+	
+	@PostMapping("add")
+	public ResponseEntity<?> addClasses(@RequestBody ClassesDTO dto,Authentication authentication){
+		return classesService.addClass(dto,authentication.getName());
+	}
+	@PostMapping("getAll")
+	public ResponseEntity<?> getAllClasses(@RequestBody GeneralDTO dto){
+		return classesService.getAll(dto.getId());
+	}
+	
+
+	@PostMapping("getAssignedExams")
+	public ResponseEntity<?> getAssignedExams(@RequestBody IdsDTO dto){
+		return classesService.getAssignedData(dto.getClassesId());
+	}
+
+	@PostMapping("attendancetable")
+	public ResponseEntity<?> getِِAttendancetable(@RequestBody IdsDTO dto){
+		
+		return classesService.getِِAttendancetable(dto.getClassesId());
+	}
+
+	
+
+	
+	
+}

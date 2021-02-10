@@ -1,0 +1,161 @@
+package com.mr.app.dto;
+
+import java.sql.Timestamp;
+
+import javax.validation.constraints.NotNull;
+
+public class MaterialInfoDTO {
+
+
+
+	@NotNull
+	private String name;
+	@NotNull
+	private String doctorCode;
+	@NotNull
+	private String materialCode;
+
+
+	private Timestamp SaturdayFrom;
+	private Timestamp SaturdayTo;
+	private Timestamp SundayFrom;
+	private Timestamp SundayTo;
+	private Timestamp MondayFrom;
+	private Timestamp MondayTo;
+	private Timestamp TuesdayFrom;
+	private Timestamp TuesdayTo;
+	private Timestamp WednesdayFrom;
+	private Timestamp WednesdayTo;
+	private Timestamp ThursdayFrom;
+	private Timestamp ThursdayTo;
+	private Timestamp FridayFrom;
+	private Timestamp FridayTo;
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
+	public String getDoctorCode() {
+		return doctorCode;
+	}
+	public void setDoctorCode(String doctorCode) {
+		this.doctorCode = doctorCode;
+	}
+	public String getMaterialCode() {
+		return materialCode;
+	}
+	public void setMaterialCode(String materialCode) {
+		this.materialCode = materialCode;
+	}
+	public Timestamp getSaturdayFrom() {
+		return SaturdayFrom;
+	}
+	public void setSaturdayFrom(Timestamp saturdayFrom) {
+		SaturdayFrom = saturdayFrom;
+	}
+	public Timestamp getSaturdayTo() {
+		return SaturdayTo;
+	}
+	public void setSaturdayTo(Timestamp saturdayTo) {
+		SaturdayTo = saturdayTo;
+	}
+	public Timestamp getSundayFrom() {
+		return SundayFrom;
+	}
+	public void setSundayFrom(Timestamp sundayFrom) {
+		SundayFrom = sundayFrom;
+	}
+	public Timestamp getSundayTo() {
+		return SundayTo;
+	}
+	public void setSundayTo(Timestamp sundayTo) {
+		SundayTo = sundayTo;
+	}
+	public Timestamp getMondayFrom() {
+		return MondayFrom;
+	}
+	public void setMondayFrom(Timestamp mondayFrom) {
+		MondayFrom = mondayFrom;
+	}
+	public Timestamp getMondayTo() {
+		return MondayTo;
+	}
+	public void setMondayTo(Timestamp mondayTo) {
+		MondayTo = mondayTo;
+	}
+	public Timestamp getTuesdayFrom() {
+		return TuesdayFrom;
+	}
+	public void setTuesdayFrom(Timestamp tuesdayFrom) {
+		TuesdayFrom = tuesdayFrom;
+	}
+	public Timestamp getTuesdayTo() {
+		return TuesdayTo;
+	}
+	public void setTuesdayTo(Timestamp tuesdayTo) {
+		TuesdayTo = tuesdayTo;
+	}
+	public Timestamp getWednesdayFrom() {
+		return WednesdayFrom;
+	}
+	public void setWednesdayFrom(Timestamp wednesdayFrom) {
+		WednesdayFrom = wednesdayFrom;
+	}
+	public Timestamp getWednesdayTo() {
+		return WednesdayTo;
+	}
+	public void setWednesdayTo(Timestamp wednesdayTo) {
+		WednesdayTo = wednesdayTo;
+	}
+	public Timestamp getThursdayFrom() {
+		return ThursdayFrom;
+	}
+	public void setThursdayFrom(Timestamp thursdayFrom) {
+		ThursdayFrom = thursdayFrom;
+	}
+	public Timestamp getThursdayTo() {
+		return ThursdayTo;
+	}
+	public void setThursdayTo(Timestamp thursdayTo) {
+		ThursdayTo = thursdayTo;
+	}
+	public Timestamp getFridayFrom() {
+		return FridayFrom;
+	}
+	public void setFridayFrom(Timestamp fridayFrom) {
+		FridayFrom = fridayFrom;
+	}
+	public Timestamp getFridayTo() {
+		return FridayTo;
+	}
+	public void setFridayTo(Timestamp fridayTo) {
+		FridayTo = fridayTo;
+	}
+	public MaterialInfoDTO(@NotNull String name, @NotNull String doctorCode, Timestamp saturdayFrom,
+			Timestamp saturdayTo, Timestamp sundayFrom, Timestamp sundayTo, Timestamp mondayFrom, Timestamp mondayTo,
+			Timestamp tuesdayFrom, Timestamp tuesdayTo, Timestamp wednesdayFrom, Timestamp wednesdayTo,
+			Timestamp thursdayFrom, Timestamp thursdayTo, Timestamp fridayFrom, Timestamp fridayTo) {
+		super();
+		this.name = name;
+		this.doctorCode = doctorCode;
+		SaturdayFrom = saturdayFrom;
+		SaturdayTo = saturdayTo;
+		SundayFrom = sundayFrom;
+		SundayTo = sundayTo;
+		MondayFrom = mondayFrom;
+		MondayTo = mondayTo;
+		TuesdayFrom = tuesdayFrom;
+		TuesdayTo = tuesdayTo;
+		WednesdayFrom = wednesdayFrom;
+		WednesdayTo = wednesdayTo;
+		ThursdayFrom = thursdayFrom;
+		ThursdayTo = thursdayTo;
+		FridayFrom = fridayFrom;
+		FridayTo = fridayTo;
+	}
+	
+	
+	
+	
+}

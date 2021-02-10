@@ -47,14 +47,18 @@ public class PostController {
         return postService.getAllPosts();
     }
 
-    @GetMapping("/by-subreddit/{id}")
-    public List<PostResponse> getAllPostsBySubreddit(@PathVariable Long id) {
-        return postService.getPostsBySubreddit(id);
-    }
 
     @GetMapping("/byUser/{username}")
     public ResponseEntity<List<PostResponse>> getPostsByUsername(@PathVariable String username) {
         return status(HttpStatus.OK).body(postService.getPostByUserName(username));
     }
 
+
+
+
+    @RequestMapping(value="/{id}", method=RequestMethod.DELETE)
+    public ResponseEntity<Void> deletePost(@PathVariable Long id) {
+        postService.deletePost(id);
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
 }

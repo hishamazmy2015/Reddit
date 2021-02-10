@@ -1,0 +1,60 @@
+package codeForces;
+
+import java.util.Scanner;
+
+public class Caisa_and_Pylons {
+
+	public static void main(String[] args) {
+
+		Scanner scan = new Scanner(System.in);
+		int maxHeight = 0;
+		int n = scan.nextInt();
+		int position = scan.nextInt() - 1;
+		// position--;
+		scan.nextLine();
+		int distances[] = new int[n];
+
+		for (int i = 0; i < n; i++) {
+			distances[i] = scan.nextInt();
+		}
+
+		int arrow;
+		if (n - position > position)
+			arrow = 0;
+		else
+			arrow = 1;
+
+		int range = 0;
+		if (arrow != 1)
+			range = n - position - 1;
+		else
+			range = position - (n - position) + 1;
+
+		for (int i = 0; i < n; i++) {
+
+			if (position == i && distances[position] == 1)
+				maxHeight++;
+			// left
+			else if (arrow == 1) {
+				if (i <= range && distances[position - i] == 1) {
+					maxHeight++;
+
+				} else if (Math.abs(position + i) < n && distances[Math.abs(position - i)] == distances[position + i]
+						&& distances[position + i] == 1) {
+					maxHeight += 1;
+				}
+				// right
+			} else {
+				if (i >= range && distances[i] == 1) {
+					maxHeight++;
+				} else if (Math.abs(position + i) < n && distances[Math.abs(position - i)] == distances[position + i]
+						&& distances[position + i] == 1) {
+					maxHeight += 1;
+				}
+			}
+
+		}
+		System.out.println(maxHeight);
+	}
+
+}

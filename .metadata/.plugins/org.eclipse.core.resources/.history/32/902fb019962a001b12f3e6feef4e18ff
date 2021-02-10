@@ -1,0 +1,105 @@
+package com.mr.app.repository;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.List;
+
+import javax.validation.constraints.NotNull;
+
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.CrudRepository;
+
+import com.mr.app.dto.MaterialAssignmentDTO;
+import com.mr.app.dto.MaterialDTO;
+import com.mr.app.dto.MaterialInfoDTO;
+import com.mr.app.entity.Material;
+import com.mr.app.entity.MaterialAssignment;
+import com.mr.app.entity.Profile;
+
+public interface MaterialAssignmentRepository extends CrudRepository<MaterialAssignment, Integer> {
+
+	@Query("select distinct new com.mr.app.dto.MaterialDTO(e.id,e.name,e.code,m.id)"
+			+ " from MaterialAssignment m Inner Join m.material e "
+			+ " where m.department.id =:departmentId and m.isExam ='N' ")
+	List<MaterialDTO> findMaterialForStudentByDepartmentId(int departmentId);
+
+	@Query("select distinct new com.mr.app.dto.MaterialDTO(e.id,e.name,e.code,m.id) "
+			+ "from MaterialAssignment m Inner Join m.material e "
+			+ " where m.department.id =:departmentId and m.isExam ='Y' ")
+	List<MaterialDTO> findExamsForStudentByDepartmentId(int departmentId);
+
+	@Query("select distinct new com.mr.app.dto.MaterialDTO(e.id,e.name,e.code,m.id) "
+			+ "from MaterialAssignment m Inner Join m.material e " + " where m.doctor.id =:doctorId and m.isExam ='N' ")
+	List<MaterialDTO> findMaterialForDoctorByDoctorId(int doctorId);
+
+	@Query("select distinct new com.mr.app.dto.MaterialDTO(e.id,e.name,e.code,m.id)"
+			+ " from MaterialAssignment m Inner Join m.material e "
+			+ " where m.doctor.id =:doctorId and m.isExam ='Y' ")
+	List<MaterialDTO> findExamsForDoctorByDoctorId(int doctorId);
+
+	@Query("select distinct new com.mr.app.dto.MaterialDTO(e.id,e.name,e.code,m.id)"
+			+ " from MaterialAssignment m Inner Join m.doctor e " + " where m.department.id =:departmentId")
+	List<MaterialDTO> findDoctorsForDepartment(int departmentId);
+
+	@Query("select distinct p " + " from MaterialAssignment m Inner Join m.doctor e " + " Inner Join e.user u"
+			+ " Inner Join Profile p on u.id = p.user " + " where m.department.id =:departmentId")
+	List<Profile> findDoctorsForDepartment2(int departmentId);
+
+	@Query("select distinct new com.mr.app.dto.MaterialDTO(e.id,e.name,e.code,m.id)"
+			+ " from MaterialAssignment m Inner Join m.material e "
+			+ " where m.classes.id =:classId and m.isExam ='Y' ")
+	List<MaterialDTO> findExamsForClassByClassId(int classId);
+
+//	@Query("select distinct new com.mr.app.dto.MaterialDTO(e.id,e.name,e.code,m.id)"
+//	+ " from MaterialAssignment m Inner Join m.material e "
+//	+ " where m.classes.id =:classId and m.isExam ='Y' ")
+//List<MaterialAssignmentDTO> findExamsForClassByClassId(int classId);
+
+//MaterialInfoDTO(int id, String doctorName, String materialName, String dateFrom, String dateTo) {
+
+//			, String isExam,
+//			String saturdayFrom, String saturdayTo
+//			, String sundayFrom, String sundayTo, 
+//			String mondayFrom,String mondayTo, 
+//			String tuesdayFrom, String tuesdayTo
+//			, String wednesdayFrom, String wednesdayTo,
+//			String thursdayFrom, String thursdayTo, String fridayFrom, String fridayTo)
+
+//	(@NotNull String name, @NotNull String collegeCode, @NotNull String departmentCode,
+//			@NotNull String doctorCode, @NotNull String materialCode, @NotNull String classesCode
+
+	@Query("select distinct new com.mr.app.dto.MaterialAssignmentDTO(e.name,d.name "
+
+			+ " ,new SimpleDateFormat('dd-MM-yyyy HH:mm:ss').format(MS.SaturdayFrom)"
+			+ " ,new SimpleDateFormat('dd-MM-yyyy HH:mm:ss').format(MS.SaturdayTo)"
+			+ " ,new SimpleDateFormat('dd-MM-yyyy HH:mm:ss').format(MS.SundayFrom)"
+			+ " ,new SimpleDateFormat('dd-MM-yyyy HH:mm:ss').format(MS.SundayTo)"
+			+ " ,new SimpleDateFormat('dd-MM-yyyy HH:mm:ss').format(MS.MondayFrom)"
+			+ " ,new SimpleDateFormat('dd-MM-yyyy HH:mm:ss').format(MS.MondayTo)"
+			+ " ,new SimpleDateFormat('dd-MM-yyyy HH:mm:ss').format(MS.TuesdayFrom)"
+			+ " ,new SimpleDateFormat('dd-MM-yyyy HH:mm:ss').format(MS.TuesdayTo)"
+			+ " ,new SimpleDateFormat('dd-MM-yyyy HH:mm:ss').format(MS.WednesdayFrom)"
+			+ " ,new SimpleDateFormat('dd-MM-yyyy HH:mm:ss').format(MS.WednesdayTo)"
+			+ " ,new SimpleDateFormat('dd-MM-yyyy HH:mm:ss').format(MS.ThursdayFrom)"
+			+ " ,new SimpleDateFormat('dd-MM-yyyy HH:mm:ss').format(MS.ThursdayTo)"
+			+ " ,new SimpleDateFormat('dd-MM-yyyy HH:mm:ss').format(MS.FridayFrom)"
+			+ " ,new SimpleDateFormat('dd-MM-yyyy HH:mm:ss').format(MS.FridayTo))"
+
+//			new SimpleDateFormat("yyyyMMdd").format(date);
+			
+//			+ " ,MS.SaturdayFrom,MS.SaturdayTo" 
+//			+ " ,MS.SundayFrom,MS.SundayTo" 
+//			+ " ,MS.MondayFrom,MS.MondayTo"
+//			+ " ,MS.TuesdayFrom , MS.TuesdayTo" 
+//			+ " ,MS.WednesdayFrom , MS.WednesdayTo" 
+//			+ " ,MS.ThursdayFrom , MS.ThursdayTo"
+//			+ " ,MS.FridayFrom , MS.FridayTo)"
+
+			+ " from MaterialAssignment m Inner Join m.material e " 
+			+ " join m.doctor d "
+			+ " join MaterialSchadule MS on MS.materialAssignment=m.id " 
+			+ " where m.classes.id =:classId ")
+
+	List<MaterialAssignmentDTO> findByClassId(int classId);
+
+}

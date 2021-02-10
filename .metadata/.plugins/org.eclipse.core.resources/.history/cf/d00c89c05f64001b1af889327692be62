@@ -1,0 +1,116 @@
+package codeForces;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Scanner;
+
+import com.sun.javafx.collections.MappingChange.Map;
+
+public class Burglar_and_Matches {
+
+	public static void main(String[] args) {
+
+		Scanner scan = new Scanner(System.in);
+		int bagBurglar = scan.nextInt();
+		int n = scan.nextInt();
+
+		scan.nextLine();
+
+		int matchesSize[] = new int[n];
+		int matchesNo[] = new int[n];
+
+		for (int i = 0; i < n; i++) {
+			matchesSize[i] = scan.nextInt();
+			matchesNo[i] = scan.nextInt();
+		}
+
+		for (int i = 0; i < n; i++) {
+			System.out.println(matchesSize[i]);
+			System.out.println(matchesNo[i]);
+		}
+
+		// Sort the array using selection sort
+
+		int index = 0;
+		int temp;
+		int temp2;
+
+		for (int i = 0; i < n; i++) {
+			int small = matchesNo[i];
+			for (int j = i; j < n; i++) {
+				/* find the small item */
+				if (small > matchesNo[j]) {
+					small = matchesNo[j];
+					index = j;
+				}
+			}
+			temp = matchesNo[i];
+			matchesNo[i] = matchesNo[index];
+			matchesNo[index] = temp;
+
+			temp2 = matchesSize[i];
+			matchesSize[i] = matchesSize[index];
+			matchesSize[index] = temp2;
+
+		}
+		int total_size = 0;
+		int total = 0;
+
+		for (int i = 0; i < n; i++) {
+			matchesNo[i] = matchesNo[index];
+			total += matchesSize[i];
+			if (total_size <= bagBurglar) {
+				total += matchesNo[i] * matchesSize[i];
+			} else {
+				while (matchesSize[i] + total_size > bagBurglar)
+					matchesSize[i] -= matchesSize[i];
+				total += matchesNo[i] * matchesSize[i];
+
+			}
+
+		}
+		System.out.println("total " + total);
+
+	}
+}
+
+//verdict: OK
+//Input
+//20 17
+//1 1 0 1 1 1 1 0 1 0 1 1 1 0 1 1 0 0 0 0
+//Output
+//10
+//Answer
+//10
+//Checker Log
+//ok 1 number(s): "10"
+
+//
+//WRONG_ANSWER
+//Input
+//100 60
+//1 1 1 1 1 1 0 1 0 0  1  1  0  1  1  1  1  1  0  0 1 1 0 0 0 0 0 1 0 1 1 0 1 0 1 0 1 0 1 1 0 0 0 0 0 1 1 1 0 1 1 0 0 0 1 0 0 0 1 1 1 0 1 0 0 1 1 1 0 1 1 1 0 0 1 1 0 1 0 0 0 1 0 0 0 0 0 0 1 1 1 0 0 1 1 1 0 1 0 0
+
+//1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20
+
+////Output
+//12
+//Answer
+//27
+//Checker Log
+//wrong answer 1st numbers differ - expected: '27', found: '12'
+
+//20 17
+//1 1 0 1 1 1 1 0 1 0 1 1 1 0 1 1 0 0 0 0
+
+//Input
+//9 3
+//1 1 1 1 1 1 1 1 0
+//Output
+//11
+//Answer
+//8
+
+// List<Integer> list = Arrays.stream(heights2).boxed().collect(Collectors.toList());
+// List<int[]> list = Arrays.asList(heights2);
+// Collections.sort(list);

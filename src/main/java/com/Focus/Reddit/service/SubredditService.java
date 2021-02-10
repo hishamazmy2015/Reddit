@@ -37,17 +37,17 @@ public class SubredditService {
         return subredditDto;
     }
 
-    @org.springframework.transaction.annotation.Transactional(readOnly = true)
-    public List<SubredditDto> getAll() {
-        return subredditRepository.findAll().stream().
-                map(subredditMapper::mapSupreditToDto).collect(toList());
-    }
+//    @org.springframework.transaction.annotation.Transactional(readOnly = true)
+//    public List<SubredditDto> getAll() {
+//        return subredditRepository.findAll().stream().
+//                map(subredditMapper::mapSupreditToDto).collect(toList());
+//    }
 
-    @org.springframework.transaction.annotation.Transactional(readOnly = true)
-    public SubredditDto getSubredit(Long id) {
-        Subreddit subredit = subredditRepository.findById(id).orElseThrow(() -> new SpringRedditException("No Subredit found"));
-        return subredditMapper.mapSupreditToDto(subredit);
-    }
+//    @org.springframework.transaction.annotation.Transactional(readOnly = true)
+//    public SubredditDto getSubredit(Long id) {
+//        Subreddit subredit = subredditRepository.findById(id).orElseThrow(() -> new SpringRedditException("No Subredit found"));
+//        return subredditMapper.mapSupreditToDto(subredit);
+//    }
 
 //    private Subreddit mapSubredditDto(SubredditDto subredditDto) {
 //        return Subreddit.builder().name(subredditDto.getSubredditName()).

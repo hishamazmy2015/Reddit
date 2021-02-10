@@ -1,0 +1,88 @@
+package codeForces;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Scanner;
+
+import com.sun.javafx.collections.MappingChange.Map;
+
+public class Burglar_and_Matches {
+
+	public static void main(String[] args) {
+
+		Scanner scan = new Scanner(System.in);
+		int bagBurglar = scan.nextInt();
+		int n = scan.nextInt();
+
+		scan.nextLine();
+
+		int matchesSize[] = new int[n];
+		int matchesNo[] = new int[n];
+
+		for (int i = 0; i < n; i++) {
+			matchesSize[i] = scan.nextInt();
+			matchesNo[i] = scan.nextInt();
+		}
+
+		// Sort the array using selection sort
+
+		int index = 0;
+		int temp;
+		int temp2;
+
+		for (int i = 0; i < n; i++) {
+			int small = matchesNo[i];
+			for (int j = i + 1; j < n; j++) {
+				/* find the small item */
+				if (small < matchesNo[j]) {
+					small = matchesNo[j];
+					index = j;
+				}
+			}
+			if (small != matchesNo[i]) {
+				temp = matchesNo[i];
+				matchesNo[i] = matchesNo[index];
+				matchesNo[index] = temp;
+
+				temp2 = matchesSize[i];
+				matchesSize[i] = matchesSize[index];
+				matchesSize[index] = temp2;
+			}
+			System.out.print("size " + matchesSize[i]);
+			System.out.print("    ");
+			System.out.println("No " + matchesNo[i]);
+		}
+
+		int total_size = 0;
+		int total = 0;
+
+		for (int i = 0; i < n; i++) {
+			System.out.print("size " + matchesSize[i] + "    ");
+			System.out.println("No " + matchesNo[i]);
+			total_size += matchesSize[i];
+//			total += matchesSize[i];
+			if (total_size <= bagBurglar) {
+				total += Math.multiplyExact(matchesNo[i], matchesSize[i]);
+			} else {
+				System.out.println("total_size " + total_size);
+
+				while (total_size > bagBurglar) {
+					total_size--;
+					matchesSize[i]--;
+				}
+				System.out.println("matchesSize[i] " + matchesSize[i]);
+				total += matchesNo[i] * matchesSize[i];
+				break;
+			}
+
+		}
+
+		System.out.println("total " + total);
+
+	}
+}
+
+//3 3
+//1 3
+//2 2
+//3 1
